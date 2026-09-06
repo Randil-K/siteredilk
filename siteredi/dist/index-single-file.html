@@ -1,0 +1,2698 @@
+<!DOCTYPE html>
+<!-- The lang attribute is set to the visitor's language by the boot script
+     below, before first paint. It drives the font stack in styles.css. -->
+<html lang="si">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ---------- SEO ----------------------------------------------------
+     Update these for your own business before going live. The <title>
+     is also swapped per language by i18n.js (meta.title in each
+     language file); this one is the crawler's first impression.
+     ------------------------------------------------------------------- -->
+<title>Site රෙඩී — ව්‍යාපාරික Website</title>
+<meta name="description" content="ශ්‍රී ලංකාවේ කුඩා ව්‍යාපාර සඳහා Website නිර්මාණය. දින 7ක් ඇතුළත, දරාගත හැකි මිලකට. සිංහල, දෙමළ සහ English සහය. | Website design for Sri Lankan small businesses.">
+<meta name="theme-color" content="#0B2545">
+<link rel="canonical" href="https://siteredi.lk/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Site රෙඩී — ව්‍යාපාරික Website">
+<meta property="og:description" content="ඔබේ ව්‍යාපාරයත් අන්තර්ජාලයට ගෙන යමු. දින 7ක් ඇතුළත Website එකක්.">
+<meta property="og:url" content="https://siteredi.lk/">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- ---------- Favicon (inline, no extra request) ---------------------- -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 84 84'%3E%3Crect width='84' height='84' rx='20' fill='%23FF5A1F'/%3E%3Cpath d='M24 44 L42 24 L60 44' stroke='%23FFF8F0' stroke-width='9' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M42 24 L42 60' stroke='%23FFF8F0' stroke-width='9' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<!-- ---------- Fonts ---------------------------------------------------
+     Noto Sans Sinhala + Noto Sans Tamil carry the two local scripts;
+     Manrope handles Latin; Baloo 2 is reserved for the logo lockup.
+     ------------------------------------------------------------------- -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Manrope:wght@500;600;700;800&family=Noto+Sans+Sinhala:wght@400;500;600;800&family=Noto+Sans+Tamil:wght@400;500;600;800&family=Noto+Serif+Sinhala:wght@600&display=swap">
+
+<style>
+/* ============================================================
+   SITE රෙඩී — STYLESHEET
+   ------------------------------------------------------------
+   CONTENTS
+     1.  Design tokens (colours, type, shape)
+     2.  Per-language typography
+     3.  Base elements
+     4.  Buttons
+     5.  Navigation + language switcher
+     6.  Hero
+     7.  Trust bar
+     8.  Benefits
+     9.  Problems / solution
+     10. Services
+     11. Why choose us
+     12. Portfolio
+     13. Process
+     14. Testimonials
+     15. FAQ
+     16. Final CTA
+     17. Footer
+     18. Floating WhatsApp
+     19. Motion + reveal
+   ============================================================ */
+
+
+/* ============================================================
+   1. DESIGN TOKENS
+   Change the brand here and it changes everywhere.
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  /* ---- Brand colours ------------------------------------- */
+  --navy-900: #071B33;   /* deepest navy — CTA + footer grounds  */
+  --navy-700: #0B2545;   /* primary navy — headings, nav         */
+  --navy-500: #13315C;   /* mid navy — secondary surfaces        */
+  --navy-300: #3D5A80;   /* muted navy — icons on light          */
+
+  --gold:     #F2B705;   /* accent — highlights, underlines      */
+
+  --orange:     #FF5A1F; /* ACTION colour — buttons only         */
+  --orange-dim: #E64E17;
+
+  --blue-100: #EAF1F9;   /* soft blue fill                       */
+  --blue-200: #D3E2F2;
+
+  --paper: #FFFFFF;      /* white surfaces                       */
+  --mist:  #F5F8FC;      /* very light gray page ground          */
+  --line:  #E1E9F2;      /* hairline borders                     */
+
+  --slate:      #5A6E85; /* body text — blue-biased grey         */
+  --slate-soft: #8497AB; /* captions                             */
+
+  --danger: #C4342A;     /* the "without a website" problems     */
+  --green:  #17795E;     /* confirmations, ticks                 */
+  --wa:     #1FA855;     /* WhatsApp green                       */
+  --wa-dim: #178643;
+
+  /* ---- Shape --------------------------------------------- */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --shadow-sm: 0 2px 8px rgba(11, 37, 69, 0.06);
+  --shadow-md: 0 8px 28px rgba(11, 37, 69, 0.09);
+  --shadow-lg: 0 20px 56px rgba(11, 37, 69, 0.16);
+
+  --wrap: 1120px;
+
+  /* ---- Type: defaults are Sinhala (the default language) --- */
+  --font-body:  'Noto Sans Sinhala', 'Iskoola Pota', sans-serif;
+  --font-quote: 'Noto Serif Sinhala', 'Noto Sans Sinhala', serif;
+  --font-en:    'Manrope', system-ui, -apple-system, sans-serif;
+  --font-logo:  'Baloo 2', 'Noto Sans Sinhala', cursive;
+
+  --h1-leading: 1.52;    /* Sinhala/Tamil need more leading than Latin */
+  --body-leading: 1.75;
+}
+
+
+/* ============================================================
+   2. PER-LANGUAGE TYPOGRAPHY
+   The <html lang="..."> attribute drives the whole type system.
+   TO ADD A LANGUAGE: add one block here with its font stack.
+   ============================================================ */
+html[lang="ta"] {
+  --font-body:  'Noto Sans Tamil', sans-serif;
+  --font-quote: 'Noto Sans Tamil', sans-serif;
+  --font-logo:  'Baloo 2', 'Noto Sans Tamil', cursive;
+}
+
+html[lang="en"] {
+  --font-body:  'Manrope', system-ui, -apple-system, sans-serif;
+  --font-quote: 'Manrope', system-ui, sans-serif;
+  --h1-leading: 1.18;    /* Latin sets much tighter */
+  --body-leading: 1.65;
+}
+
+
+/* ============================================================
+   3. BASE ELEMENTS
+   ============================================================ */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--navy-700);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: var(--body-leading);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-body);
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--navy-700);
+  text-wrap: balance;
+  margin: 0;
+}
+
+p { margin: 0; }
+a { color: inherit; }
+
+/* Latin fragments inside Sinhala/Tamil text (domains, product names) */
+.en { font-family: var(--font-en); font-weight: 700; }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 22px; }
+
+section { padding: 92px 0; }
+.ground-mist { background: var(--mist); }
+.ground-navy { background: var(--navy-900); color: #DCE7F3; }
+.ground-navy h2, .ground-navy h3 { color: #FFFFFF; }
+
+/* ---------- shared section header ---------- */
+.sec-head { max-width: 760px; margin-bottom: 52px; }
+.sec-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+
+.eyebrow {
+  font-family: var(--font-en);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--gold); display: block; }
+.sec-head.center .eyebrow::before { display: none; }
+.ground-navy .eyebrow { color: var(--gold); }
+
+h2 { font-size: clamp(1.6rem, 3.6vw, 2.35rem); }
+
+.sec-head p { color: var(--slate); font-size: 1.06rem; margin-top: 16px; }
+.ground-navy .sec-head p { color: rgba(220, 231, 243, .8); }
+
+
+/* ============================================================
+   4. BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 15px 26px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  /* Text length changes between languages — buttons grow, never clip. */
+  white-space: normal;
+  text-align: center;
+}
+.btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+.btn-primary { background: var(--orange); color: #fff; box-shadow: 0 8px 20px rgba(255,90,31,.32); }
+.btn-primary:hover { background: var(--orange-dim); transform: translateY(-2px); box-shadow: 0 12px 26px rgba(255,90,31,.4); }
+
+.btn-wa { background: var(--wa); color: #fff; box-shadow: 0 8px 20px rgba(31,168,85,.28); }
+.btn-wa:hover { background: var(--wa-dim); transform: translateY(-2px); }
+
+.btn-ghost { background: transparent; color: var(--navy-700); border-color: var(--blue-200); }
+.btn-ghost:hover { border-color: var(--navy-300); background: var(--blue-100); transform: translateY(-2px); }
+
+.ground-navy .btn-ghost { color: #fff; border-color: rgba(255,255,255,.32); }
+.ground-navy .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.6); }
+
+
+/* ============================================================
+   TOP LOADING BAR (pure CSS — sweeps once, then removes itself)
+   ============================================================ */
+.loadbar {
+  position: fixed; top: 0; left: 0; height: 3px; width: 100%;
+  background: linear-gradient(90deg, var(--orange), var(--gold));
+  transform-origin: left; z-index: 200;
+  animation: sweep .75s ease-out forwards;
+}
+@keyframes sweep {
+  0%   { transform: scaleX(0); opacity: 1; }
+  70%  { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; visibility: hidden; }
+}
+
+
+/* ============================================================
+   5. NAVIGATION + LANGUAGE SWITCHER
+   ============================================================ */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.nav.scrolled { border-bottom-color: var(--line); box-shadow: var(--shadow-sm); }
+
+.nav-inner {
+  max-width: var(--wrap); margin: 0 auto; padding: 14px 22px;
+  display: flex; align-items: center; gap: 14px;
+}
+
+.logo { display: flex; align-items: center; gap: 11px; text-decoration: none; margin-right: auto; }
+.logo svg { width: 40px; height: 40px; flex-shrink: 0; }
+.logo-text {
+  font-family: var(--font-logo); font-weight: 800; font-size: 1.5rem;
+  line-height: 1; color: var(--navy-700); display: flex; gap: .22em; align-items: baseline;
+  white-space: nowrap;
+}
+.logo-text .si { color: var(--orange); }
+
+.nav-links { display: flex; align-items: center; gap: 2px; }
+.nav-links a {
+  padding: 9px 13px; border-radius: 100px; text-decoration: none;
+  font-size: .93rem; font-weight: 500; color: var(--slate);
+  transition: background .15s ease, color .15s ease;
+  white-space: nowrap;
+}
+.nav-links a:hover { background: var(--blue-100); color: var(--navy-700); }
+
+.nav-cta { padding: 11px 20px; font-size: .92rem; white-space: nowrap; }
+
+/* ---------- Language switcher ---------- */
+.lang { position: relative; flex-shrink: 0; }
+
+.lang-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 13px; border-radius: 100px;
+  background: var(--paper); border: 1px solid var(--line);
+  font-family: var(--font-body); font-size: .9rem; font-weight: 600;
+  color: var(--navy-700); cursor: pointer;
+  transition: border-color .18s ease, background .18s ease;
+  white-space: nowrap;
+}
+.lang-btn:hover { border-color: var(--navy-300); background: var(--blue-100); }
+.lang-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.lang-btn .globe { width: 17px; height: 17px; stroke: var(--navy-500); flex-shrink: 0; }
+.lang-btn .chev {
+  width: 12px; height: 12px; stroke: var(--slate-soft); flex-shrink: 0;
+  transition: transform .2s ease;
+}
+.lang.open .lang-btn { border-color: var(--navy-300); background: var(--blue-100); }
+.lang.open .lang-btn .chev { transform: rotate(180deg); }
+
+.lang-menu {
+  position: absolute; top: calc(100% + 8px); right: 0;
+  min-width: 172px; margin: 0; padding: 6px; list-style: none;
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-md); box-shadow: var(--shadow-md);
+  z-index: 110;
+  /* Hidden by default; opens with a small rise. */
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+}
+.lang.open .lang-menu { opacity: 1; visibility: visible; transform: none; }
+
+.lang-menu li { margin: 0; }
+.lang-opt {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 12px; border: 0; border-radius: var(--r-sm);
+  background: transparent; cursor: pointer; text-align: left;
+  font-family: var(--font-body); font-size: .95rem; font-weight: 500;
+  color: var(--navy-700);
+  transition: background .14s ease;
+}
+.lang-opt:hover { background: var(--blue-100); }
+.lang-opt:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+
+/* Each option renders in its OWN script's font, not the active language's. */
+.lang-opt[data-lang="si"] { font-family: 'Noto Sans Sinhala', sans-serif; }
+.lang-opt[data-lang="ta"] { font-family: 'Noto Sans Tamil', sans-serif; }
+.lang-opt[data-lang="en"] { font-family: 'Manrope', sans-serif; }
+
+/* Active language: gold tick + weight, so the current choice is obvious. */
+.lang-opt .tick { opacity: 0; color: var(--gold); font-weight: 800; flex-shrink: 0; }
+.lang-opt[aria-selected="true"] { background: var(--blue-100); font-weight: 700; }
+.lang-opt[aria-selected="true"] .tick { opacity: 1; }
+
+/* ---------- Mobile menu ---------- */
+.burger { display: none; background: none; border: 0; cursor: pointer; padding: 8px; border-radius: 8px; }
+.burger span {
+  display: block; width: 22px; height: 2px; background: var(--navy-700);
+  border-radius: 2px; margin: 4px 0; transition: transform .2s ease, opacity .2s ease;
+}
+.nav.open .burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav.open .burger span:nth-child(2) { opacity: 0; }
+.nav.open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+@media (max-width: 980px) {
+  .burger { display: block; }
+  .nav-links {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    flex-direction: column; align-items: stretch; gap: 2px;
+    padding: 12px 16px 20px; box-shadow: var(--shadow-md);
+    display: none;
+  }
+  .nav.open .nav-links { display: flex; }
+  .nav-links a { padding: 13px 14px; }
+  .nav-cta { display: none; }
+  /* The switcher stays in the bar on mobile — reachable without opening the menu. */
+}
+@media (max-width: 420px) {
+  .lang-btn { padding: 9px 11px; }
+  .lang-btn .current { display: none; }   /* globe + chevron only on the narrowest phones */
+  .logo-text { font-size: 1.3rem; }
+}
+
+
+/* ============================================================
+   6. HERO
+   ============================================================ */
+.hero {
+  position: relative; overflow: hidden;
+  padding: 76px 0 84px;
+  background:
+    radial-gradient(1100px 520px at 78% -12%, var(--blue-100) 0%, transparent 62%),
+    linear-gradient(180deg, var(--paper) 0%, var(--mist) 100%);
+}
+
+/* soft animated background shapes */
+.blob { position: absolute; border-radius: 50%; filter: blur(2px); pointer-events: none; }
+.blob-1 { width: 340px; height: 340px; right: -90px; top: 40px;
+  background: radial-gradient(circle at 32% 32%, rgba(242,183,5,.30), rgba(242,183,5,0) 68%);
+  animation: drift 17s ease-in-out infinite; }
+.blob-2 { width: 260px; height: 260px; right: 190px; bottom: -70px;
+  background: radial-gradient(circle at 62% 38%, rgba(255,90,31,.20), rgba(255,90,31,0) 68%);
+  animation: drift 21s ease-in-out infinite reverse; }
+.blob-3 { width: 200px; height: 200px; left: -60px; bottom: 40px;
+  background: radial-gradient(circle at 50% 50%, rgba(19,49,92,.14), rgba(19,49,92,0) 70%);
+  animation: drift 25s ease-in-out infinite; }
+@keyframes drift {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%     { transform: translate(-26px, 22px) scale(1.09); }
+}
+
+.hero-grid {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1.08fr .92fr; gap: 56px; align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--paper); border: 1px solid var(--line);
+  padding: 8px 16px 8px 10px; border-radius: 100px;
+  font-size: .86rem; color: var(--navy-500); font-weight: 500;
+  box-shadow: var(--shadow-sm); margin-bottom: 24px;
+}
+.hero-badge .dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+  box-shadow: 0 0 0 3px rgba(23,121,94,.16); flex-shrink: 0;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5.1vw, 3.35rem);
+  line-height: var(--h1-leading);
+  letter-spacing: -0.005em;
+}
+.hero h1 .hl { position: relative; color: var(--navy-700); }
+/* A gold rule sitting UNDER the word, clear of Sinhala/Tamil descenders —
+   a highlight drawn across the text would cut through the glyphs. */
+.hero h1 .hl::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -.1em; height: .085em;
+  background: var(--gold); border-radius: 4px;
+}
+
+.hero-quote {
+  font-family: var(--font-quote); font-weight: 600;
+  font-size: 1.14rem; color: var(--navy-500);
+  border-left: 3px solid var(--gold);
+  padding: 4px 0 4px 18px; margin: 26px 0 20px;
+  max-width: 46ch;
+}
+
+.hero-sub { color: var(--slate); font-size: 1.06rem; max-width: 52ch; }
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+.hero-note {
+  margin-top: 22px; font-size: .9rem; color: var(--slate-soft);
+  display: flex; align-items: center; gap: 8px;
+}
+.hero-note svg { flex-shrink: 0; }
+
+/* --- hero visual: a phone showing a client site --- */
+.hero-visual { position: relative; display: flex; justify-content: center; }
+
+.phone {
+  width: 268px; background: var(--navy-900); border-radius: 34px; padding: 9px;
+  box-shadow: var(--shadow-lg); position: relative; z-index: 2;
+}
+.phone-screen {
+  background: var(--paper); border-radius: 26px; overflow: hidden; min-height: 466px;
+  display: flex; flex-direction: column;
+}
+.ps-top { background: var(--navy-700); padding: 16px 15px 15px; color: #fff; }
+.ps-brandrow { display: flex; align-items: center; gap: 7px; margin-bottom: 13px; }
+.ps-brandrow .m { width: 20px; height: 20px; flex-shrink: 0; }
+.ps-brandrow .t { font-family: var(--font-logo); font-size: .84rem; font-weight: 800; }
+.ps-h { font-size: .95rem; font-weight: 800; line-height: 1.45; }
+.ps-p { font-size: .66rem; opacity: .72; margin-top: 6px; line-height: 1.6; }
+.ps-btn {
+  margin-top: 12px; background: var(--orange); color: #fff;
+  font-size: .64rem; font-weight: 600; padding: 7px 13px;
+  border-radius: 100px; display: inline-block;
+}
+.ps-body { padding: 14px 15px; flex: 1; }
+.ps-row { display: flex; gap: 8px; margin-bottom: 9px; }
+.ps-card { flex: 1; background: var(--mist); border: 1px solid var(--line); border-radius: 9px; padding: 9px; }
+.ps-card .ic { width: 17px; height: 17px; border-radius: 5px; background: var(--blue-200); margin-bottom: 6px; }
+.ps-card .l1 { height: 5px; border-radius: 3px; background: var(--navy-300); opacity: .55; margin-bottom: 4px; }
+.ps-card .l2 { height: 5px; border-radius: 3px; background: var(--line); width: 72%; }
+.ps-wide { background: var(--blue-100); border-radius: 9px; padding: 11px; margin-top: 3px; }
+.ps-wide .l1 { height: 6px; border-radius: 3px; background: var(--navy-300); opacity: .5; width: 58%; margin-bottom: 6px; }
+.ps-wide .l2 { height: 5px; border-radius: 3px; background: rgba(61,90,128,.28); margin-bottom: 4px; }
+.ps-wide .l3 { height: 5px; border-radius: 3px; background: rgba(61,90,128,.28); width: 80%; }
+
+/* floating stat chips around the phone */
+/* Floating stat chips. They are pulled OUTWARD past the phone's edge
+   rather than sitting over it: Tamil and English captions run longer
+   than Sinhala, and a chip sized to the shortest language covers the
+   mockup's headline in the others. Width is capped and the caption
+   wraps, so the chip grows downward, never sideways into the phone. */
+.chip {
+  position: absolute; background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 10px 14px; box-shadow: var(--shadow-md);
+  display: flex; align-items: center; gap: 9px; z-index: 3;
+  max-width: 152px;
+  animation: float 5.5s ease-in-out infinite;
+}
+.chip .num { font-family: var(--font-en); font-weight: 800; font-size: 1rem; color: var(--navy-700); flex-shrink: 0; }
+.chip .cap { font-size: .7rem; color: var(--slate); line-height: 1.3; }
+.chip-a { top: 44px; left: -30px; animation-delay: -1s; }
+.chip-b { bottom: 70px; right: -30px; animation-delay: -3s; }
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-11px); }
+}
+
+@media (max-width: 940px) {
+  /* The headline must lead on small screens — the phone mockup follows it,
+     so the value proposition is what lands above the fold. */
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .phone { width: 232px; }
+  .chip-a { left: 0; }
+  .chip-b { right: 0; }
+}
+@media (max-width: 520px) {
+  .hero { padding: 48px 0 64px; }
+  .chip { display: none; }
+}
+
+
+/* ============================================================
+   7. TRUST BAR / COUNTERS
+   ============================================================ */
+.trust { background: var(--navy-700); padding: 34px 0; }
+.trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.trust-item { text-align: center; color: #fff; }
+.trust-item .n {
+  font-family: var(--font-en); font-weight: 800;
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem); line-height: 1.1;
+  color: var(--gold); font-variant-numeric: tabular-nums;
+}
+.trust-item .c { font-size: .84rem; opacity: .82; margin-top: 5px; }
+@media (max-width: 620px) { .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 26px 12px; } }
+
+
+/* ============================================================
+   8. BENEFITS — "why a website"
+   ============================================================ */
+.benefit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 20px; }
+.benefit {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 30px 26px;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.benefit:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--blue-200); }
+.benefit .ico {
+  width: 50px; height: 50px; border-radius: 14px; background: var(--blue-100);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+}
+.benefit .ico svg { width: 25px; height: 25px; stroke: var(--navy-500); }
+.benefit h3 { font-size: 1.12rem; margin-bottom: 10px; }
+.benefit p { color: var(--slate); font-size: .97rem; }
+
+
+/* ============================================================
+   9. PROBLEMS → SOLUTION
+   ============================================================ */
+.problem-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: start; }
+@media (max-width: 880px) { .problem-layout { grid-template-columns: 1fr; } }
+
+.problem-list {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 32px 28px;
+  border-top: 4px solid var(--danger);
+}
+.problem-list h3 { font-size: 1.18rem; margin-bottom: 22px; }
+.problem-list ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 15px; }
+.problem-list li { display: flex; gap: 13px; align-items: flex-start; font-size: .99rem; color: var(--slate); }
+.problem-list .x {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(196,52,42,.1); color: var(--danger);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .78rem; font-weight: 700; margin-top: 3px;
+}
+
+.solution-panel {
+  background: var(--navy-700); color: #DCE7F3;
+  border-radius: var(--r-lg); padding: 36px 32px;
+  position: relative; overflow: hidden;
+}
+.solution-panel::after {
+  content: ""; position: absolute; width: 260px; height: 260px;
+  right: -110px; top: -110px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(242,183,5,.22), transparent 68%);
+}
+.solution-panel h3 { color: #fff; font-size: 1.35rem; margin-bottom: 14px; position: relative; }
+.solution-panel > p { position: relative; font-size: 1rem; opacity: .9; }
+.solution-panel ul { list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 13px; position: relative; }
+.solution-panel li { display: flex; gap: 12px; align-items: flex-start; font-size: .98rem; }
+.solution-panel .tick {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--gold); color: var(--navy-900);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .76rem; font-weight: 800; margin-top: 3px;
+}
+
+
+/* ============================================================
+   10. SERVICES
+   ============================================================ */
+.svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(252px, 1fr)); gap: 16px; }
+.svc {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 24px 22px;
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.svc:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.svc .head { display: flex; align-items: center; gap: 11px; margin-bottom: 11px; }
+.svc .ico {
+  width: 34px; height: 34px; border-radius: 9px; background: var(--blue-100);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.svc .ico svg { width: 18px; height: 18px; stroke: var(--navy-500); }
+.svc h3 { font-size: 1rem; font-weight: 800; }
+.svc p { font-size: .92rem; color: var(--slate); line-height: 1.68; }
+
+
+/* ============================================================
+   11. WHY CHOOSE US
+   ============================================================ */
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.why {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 20px; border-radius: var(--r-md);
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.11);
+  transition: background .2s ease, border-color .2s ease;
+}
+.why:hover { background: rgba(255,255,255,.09); border-color: rgba(242,183,5,.4); }
+.why .n {
+  font-family: var(--font-en); font-weight: 800; font-size: .8rem;
+  color: var(--gold); flex-shrink: 0; padding-top: 3px;
+  font-variant-numeric: tabular-nums;
+}
+.why h3 { font-size: 1.02rem; margin-bottom: 5px; }
+.why p { font-size: .9rem; color: rgba(220,231,243,.78); line-height: 1.65; }
+
+
+/* ============================================================
+   12. PORTFOLIO
+   ============================================================ */
+/* [hidden] must beat display:inline-flex when config.js turns the
+   badges off — the attribute alone would otherwise lose the cascade. */
+.demo-tag[hidden] { display: none !important; }
+.demo-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(242,183,5,.16); border: 1px solid rgba(242,183,5,.5);
+  color: #8A6A02; border-radius: 100px; padding: 5px 13px;
+  font-size: .76rem; font-weight: 600; margin-bottom: 16px;
+}
+
+.port-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 22px; }
+.port {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg);
+  overflow: hidden; transition: transform .24s ease, box-shadow .24s ease;
+  display: flex; flex-direction: column;
+}
+.port:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+.port-shot { height: 186px; padding: 14px 14px 0; position: relative; flex-shrink: 0; }
+.browser {
+  height: 100%; background: var(--paper); border-radius: 9px 9px 0 0;
+  box-shadow: 0 -1px 0 var(--line), 1px 0 0 var(--line), -1px 0 0 var(--line);
+  overflow: hidden; display: flex; flex-direction: column;
+}
+.browser-bar {
+  background: var(--mist); border-bottom: 1px solid var(--line);
+  padding: 7px 10px; display: flex; align-items: center; gap: 5px; flex-shrink: 0;
+}
+.browser-bar .d { width: 7px; height: 7px; border-radius: 50%; background: var(--blue-200); flex-shrink: 0; }
+.browser-bar .url {
+  margin-left: 7px; flex: 1; height: 13px; border-radius: 100px; background: var(--paper);
+  border: 1px solid var(--line); font-family: var(--font-en); font-size: .5rem;
+  color: var(--slate-soft); display: flex; align-items: center; padding: 0 7px;
+  overflow: hidden; white-space: nowrap;
+}
+.browser-page { flex: 1; padding: 11px; display: flex; flex-direction: column; gap: 7px; }
+.bp-hero { height: 46px; border-radius: 6px; flex-shrink: 0; }
+.bp-row { display: flex; gap: 7px; }
+.bp-tile { flex: 1; height: 30px; border-radius: 5px; background: var(--mist); border: 1px solid var(--line); }
+.bp-lines { display: flex; flex-direction: column; gap: 4px; }
+.bp-lines i { display: block; height: 4px; border-radius: 3px; background: var(--line); }
+.bp-lines i:nth-child(2) { width: 76%; }
+
+.port-info { padding: 20px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+.port-info .cat {
+  font-family: var(--font-en); font-size: .68rem; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--orange);
+}
+.port-info h3 { font-size: 1.08rem; margin: 7px 0 8px; }
+.port-info p { font-size: .91rem; color: var(--slate); }
+.port-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 14px; }
+.port-tags span {
+  font-family: var(--font-en); font-size: .68rem; font-weight: 600;
+  background: var(--blue-100); color: var(--navy-500);
+  padding: 4px 10px; border-radius: 100px;
+}
+
+
+/* ============================================================
+   13. PROCESS
+   ============================================================ */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 18px; }
+.step {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: 26px 22px;
+  display: flex; flex-direction: column;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.step:hover { border-color: var(--gold); transform: translateY(-4px); }
+.step .n {
+  width: 38px; height: 38px; border-radius: 11px;
+  background: var(--navy-700); color: var(--gold);
+  font-family: var(--font-en); font-weight: 800; font-size: .95rem;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px; font-variant-numeric: tabular-nums; flex-shrink: 0;
+}
+.step h3 { font-size: 1.05rem; margin-bottom: 8px; }
+.step p { font-size: .92rem; color: var(--slate); }
+.step .dur {
+  margin-top: auto; padding-top: 13px;
+  font-family: var(--font-en); font-size: .72rem;
+  font-weight: 700; color: var(--slate-soft); letter-spacing: .04em;
+}
+
+
+/* ============================================================
+   14. TESTIMONIALS
+   ============================================================ */
+.tst-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px; }
+.tst {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 30px 27px;
+  display: flex; flex-direction: column;
+}
+.tst .stars { color: var(--gold); font-size: .95rem; letter-spacing: 2px; margin-bottom: 15px; }
+.tst blockquote {
+  margin: 0 0 22px; font-family: var(--font-quote); font-weight: 600;
+  font-size: 1.02rem; line-height: 1.78; color: var(--navy-500); flex: 1;
+}
+.tst .who { display: flex; align-items: center; gap: 12px; padding-top: 18px; border-top: 1px solid var(--line); }
+.tst .av {
+  width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-en); font-weight: 800; font-size: .92rem; color: #fff;
+}
+.tst .nm { font-weight: 600; font-size: .95rem; }
+.tst .rl { font-size: .82rem; color: var(--slate-soft); }
+
+
+/* ============================================================
+   15. FAQ
+   ============================================================ */
+.faq-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.faq {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-md); overflow: hidden;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.faq[open] { border-color: var(--blue-200); box-shadow: var(--shadow-sm); }
+.faq summary {
+  padding: 21px 24px; cursor: pointer; font-weight: 600; font-size: 1.02rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  list-style: none; color: var(--navy-700);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--orange); }
+.faq summary:focus-visible { outline: 3px solid var(--gold); outline-offset: -3px; }
+.faq summary .pm {
+  flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--blue-100); color: var(--navy-500);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-en); font-weight: 800; font-size: 1.05rem;
+  transition: transform .22s ease, background .22s ease;
+}
+.faq[open] summary .pm { transform: rotate(45deg); background: var(--gold); color: var(--navy-900); }
+.faq .ans { padding: 0 24px 23px; color: var(--slate); font-size: .98rem; }
+
+
+/* ============================================================
+   16. FINAL CTA
+   ============================================================ */
+.final {
+  background: linear-gradient(150deg, var(--navy-900) 0%, var(--navy-700) 52%, var(--navy-500) 100%);
+  color: #fff; position: relative; overflow: hidden; text-align: center;
+}
+.final::before {
+  content: ""; position: absolute; width: 520px; height: 520px;
+  left: 50%; top: -280px; transform: translateX(-50%); border-radius: 50%;
+  background: radial-gradient(circle, rgba(242,183,5,.2), transparent 66%);
+}
+.final .inner { position: relative; z-index: 2; max-width: 760px; }
+.final h2 { color: #fff; font-size: clamp(1.75rem, 4.4vw, 2.7rem); }
+.final .lead {
+  font-family: var(--font-quote); font-weight: 600;
+  font-size: 1.14rem; color: var(--gold); margin: 20px 0 14px;
+}
+.final p.sub { color: rgba(255,255,255,.8); font-size: 1.04rem; max-width: 56ch; margin: 0 auto; }
+.final-actions { display: flex; flex-wrap: wrap; gap: 13px; justify-content: center; margin-top: 36px; }
+.final-note { margin-top: 26px; font-size: .88rem; color: rgba(255,255,255,.6); }
+
+/* The final CTA sits on a dark ground, so the ghost button needs the
+   light treatment — the navy default would be invisible here. */
+.final .btn-ghost { color: #fff; border-color: rgba(255,255,255,.34); }
+.final .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.65); }
+
+
+/* ============================================================
+   17. FOOTER
+   ============================================================ */
+footer { background: var(--navy-900); color: rgba(220,231,243,.7); padding: 56px 0 34px; }
+.foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 36px; margin-bottom: 40px; }
+@media (max-width: 760px) { .foot-grid { grid-template-columns: 1fr; gap: 30px; } }
+footer .logo-text { color: #fff; }
+footer h4 { color: #fff; font-size: .95rem; margin-bottom: 14px; }
+footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+footer a { text-decoration: none; font-size: .93rem; transition: color .15s ease; }
+footer a:hover { color: var(--gold); }
+footer .tagline { font-size: .93rem; margin-top: 14px; max-width: 36ch; line-height: 1.7; }
+.foot-bottom {
+  border-top: 1px solid rgba(255,255,255,.1); padding-top: 22px;
+  display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  font-size: .84rem; color: rgba(220,231,243,.5);
+}
+
+
+/* ============================================================
+   18. FLOATING WHATSAPP
+   ============================================================ */
+.wa-float {
+  position: fixed; right: 20px; bottom: 20px; z-index: 120;
+  display: flex; align-items: center; gap: 10px;
+  background: var(--wa); color: #fff; text-decoration: none;
+  padding: 13px 20px 13px 15px; border-radius: 100px;
+  font-size: .95rem; font-weight: 600;
+  box-shadow: 0 10px 30px rgba(31,168,85,.42);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.wa-float:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 36px rgba(31,168,85,.55); }
+.wa-float svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+.wa-float .pulse {
+  position: absolute; inset: 0; border-radius: 100px;
+  box-shadow: 0 0 0 0 rgba(31,168,85,.6);
+  animation: pulse 2.6s infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(31,168,85,.5); }
+  70%  { box-shadow: 0 0 0 16px rgba(31,168,85,0); }
+  100% { box-shadow: 0 0 0 0 rgba(31,168,85,0); }
+}
+@media (max-width: 520px) {
+  .wa-float { padding: 14px; right: 16px; bottom: 16px; }
+  .wa-float .lbl { display: none; }
+}
+
+
+/* ============================================================
+   19. MOTION + SCROLL REVEAL
+   Elements are VISIBLE by default. The inline boot script adds .js
+   to <html> before paint, which arms the hidden state — so if JS is
+   disabled or fails, the whole page still renders normally.
+   ============================================================ */
+.js .reveal { opacity: 0; transform: translateY(22px); }
+.js .reveal.in {
+  opacity: 1; transform: none;
+  transition: opacity .6s cubic-bezier(.22,.7,.3,1), transform .6s cubic-bezier(.22,.7,.3,1);
+}
+
+/* Language change: brief cross-fade of the page body so the swap
+   reads as a transition rather than a flicker. The nav stays put. */
+#page { transition: opacity .18s ease; }
+body.lang-switching #page { opacity: .25; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .js .reveal { opacity: 1 !important; transform: none !important; }
+  .loadbar { display: none; }
+  body.lang-switching #page { opacity: 1; }
+}
+
+</style>
+
+<script>
+/* Boot script — runs before first paint so there is no flash of the
+   wrong font or of un-animated content.
+     1. `.js` on <html> arms the scroll-reveal hidden state. Without
+        JavaScript the class never lands and everything stays visible.
+     2. Reads the saved language and sets <html lang> immediately. */
+(function () {
+  document.documentElement.classList.add('js');
+  var lang = 'si';
+  try {
+    var saved = window.localStorage.getItem('siteredi.lang');
+    if (saved === 'si' || saved === 'ta' || saved === 'en') lang = saved;
+  } catch (e) { /* private mode — fall back to the default */ }
+  document.documentElement.setAttribute('lang', lang);
+})();
+</script>
+</head>
+
+<body>
+
+<div class="loadbar" aria-hidden="true"></div>
+
+<!-- ============================================================
+     NAVIGATION  (stays outside #page so it doesn't fade on a
+     language change)
+     ============================================================ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+
+    <a href="#top" class="logo" data-i18n-aria="nav.homeAria">
+      <svg viewBox="0 0 84 84" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="84" height="84" rx="20" fill="#FF5A1F"/>
+        <path d="M24 44 L42 24 L60 44" stroke="#FFF8F0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M42 24 L42 60" stroke="#FFF8F0" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="42" cy="66" r="4.5" fill="#F2B705"/>
+      </svg>
+      <span class="logo-text">Site<span class="si">රෙඩී</span></span>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#why"      data-i18n="nav.why"></a>
+      <a href="#services" data-i18n="nav.services"></a>
+      <a href="#work"     data-i18n="nav.work"></a>
+      <a href="#process"  data-i18n="nav.process"></a>
+      <a href="#faq"      data-i18n="nav.faq"></a>
+      <a href="#contact"  data-i18n="nav.contact"></a>
+    </div>
+
+    <!-- ---------- Language switcher ----------
+         The <ul> is filled from config.languages by i18n.js, so
+         adding a language never means editing this markup. -->
+    <div class="lang" id="lang">
+      <button type="button" class="lang-btn" id="langBtn"
+              aria-haspopup="listbox" aria-expanded="false"
+              data-i18n-aria="nav.langAria">
+        <svg class="globe" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>
+          <path d="M12 3a14 14 0 000 18 14 14 0 000-18z"/>
+        </svg>
+        <span class="current" id="langCurrent">සිංහල</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </button>
+      <ul class="lang-menu" id="langMenu" role="listbox"></ul>
+    </div>
+
+    <a href="#contact" class="btn btn-primary nav-cta" data-cta="quote" data-i18n="nav.cta"></a>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="navLinks" data-i18n-aria="nav.menuAria">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+</nav>
+
+
+<!-- Everything below cross-fades when the language changes. -->
+<div id="page">
+
+<!-- ============================================================
+     SECTION 01: HERO
+     ============================================================ -->
+<header class="hero" id="top">
+  <div class="blob blob-1" aria-hidden="true"></div>
+  <div class="blob blob-2" aria-hidden="true"></div>
+  <div class="blob blob-3" aria-hidden="true"></div>
+
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="hero-badge">
+        <span class="dot" aria-hidden="true"></span>
+        <span data-i18n="hero.badge"></span>
+      </span>
+
+      <h1>
+        <span data-i18n="hero.h1a"></span><span class="hl" data-i18n="hero.h1hl"></span><span data-i18n="hero.h1b"></span>
+      </h1>
+
+      <p class="hero-quote" data-i18n="hero.quote"></p>
+      <p class="hero-sub" data-i18n="hero.sub"></p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-wa" data-cta="whatsapp">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.4 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+          <span data-i18n="hero.wa"></span>
+        </a>
+        <a href="#services" class="btn btn-ghost" data-i18n="hero.packages"></a>
+      </div>
+
+      <p class="hero-note">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#17795E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <span data-i18n="hero.note"></span>
+      </p>
+    </div>
+
+    <div class="hero-visual">
+      <div class="chip chip-a">
+        <span class="num">7</span>
+        <span class="cap" data-i18n="hero.chipDays"></span>
+      </div>
+
+      <div class="phone" role="img" data-i18n-aria="hero.phoneAlt">
+        <div class="phone-screen">
+          <div class="ps-top">
+            <div class="ps-brandrow">
+              <svg class="m" viewBox="0 0 84 84" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="84" height="84" rx="20" fill="#FF5A1F"/>
+                <path d="M24 44 L42 24 L60 44" stroke="#FFF8F0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M42 24 L42 60" stroke="#FFF8F0" stroke-width="10" stroke-linecap="round"/>
+              </svg>
+              <span class="t" data-i18n="hero.phoneBrand"></span>
+            </div>
+            <div class="ps-h" data-i18n="hero.phoneH"></div>
+            <div class="ps-p" data-i18n="hero.phoneP"></div>
+            <span class="ps-btn" data-i18n="hero.phoneBtn"></span>
+          </div>
+          <div class="ps-body">
+            <div class="ps-row">
+              <div class="ps-card"><div class="ic"></div><div class="l1"></div><div class="l2"></div></div>
+              <div class="ps-card"><div class="ic"></div><div class="l1"></div><div class="l2"></div></div>
+            </div>
+            <div class="ps-row">
+              <div class="ps-card"><div class="ic"></div><div class="l1"></div><div class="l2"></div></div>
+              <div class="ps-card"><div class="ic"></div><div class="l1"></div><div class="l2"></div></div>
+            </div>
+            <div class="ps-wide"><div class="l1"></div><div class="l2"></div><div class="l3"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chip chip-b">
+        <span class="num">100%</span>
+        <span class="cap" data-i18n="hero.chipMobile"></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- ============================================================
+     TRUST BAR — figures are DEMO placeholders, edit freely
+     ============================================================ -->
+<div class="trust">
+  <div class="wrap trust-grid">
+    <div class="trust-item">
+      <div class="n"><span class="count" data-to="50">0</span>+</div>
+      <div class="c" data-i18n="trust.projects"></div>
+    </div>
+    <div class="trust-item">
+      <div class="n"><span class="count" data-to="7">0</span></div>
+      <div class="c" data-i18n="trust.days"></div>
+    </div>
+    <div class="trust-item">
+      <div class="n"><span class="count" data-to="98">0</span>%</div>
+      <div class="c" data-i18n="trust.happy"></div>
+    </div>
+    <div class="trust-item">
+      <div class="n">24/7</div>
+      <div class="c" data-i18n="trust.support"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     SECTION 02: WHY EVERY BUSINESS NEEDS A WEBSITE
+     ============================================================ -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="why.eyebrow"></span>
+      <h2 data-i18n="why.h2"></h2>
+      <p data-i18n="why.p"></p>
+    </div>
+
+    <div class="benefit-grid">
+      <article class="benefit reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div>
+        <h3 data-i18n="why.b1t"></h3><p data-i18n="why.b1p"></p>
+      </article>
+      <article class="benefit reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5.5c0 4.2-2.9 7.6-7 8.5-4.1-.9-7-4.3-7-8.5V6l7-3z"/><path d="M9.2 12l2 2 3.6-3.8"/></svg></div>
+        <h3 data-i18n="why.b2t"></h3><p data-i18n="why.b2p"></p>
+      </article>
+      <article class="benefit reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+        <h3 data-i18n="why.b3t"></h3><p data-i18n="why.b3p"></p>
+      </article>
+      <article class="benefit reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l5-5 3.5 3.5L20 9"/><path d="M20 14V9h-5"/></svg></div>
+        <h3 data-i18n="why.b4t"></h3><p data-i18n="why.b4p"></p>
+      </article>
+      <article class="benefit reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+        <h3 data-i18n="why.b5t"></h3><p data-i18n="why.b5p"></p>
+      </article>
+      <article class="benefit reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.4 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.5l1.2-5.6L4 9l5.6-.6L12 3z"/></svg></div>
+        <h3 data-i18n="why.b6t"></h3><p data-i18n="why.b6p"></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 03: PROBLEMS → SOLUTION
+     ============================================================ -->
+<section class="ground-mist" id="problems">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="prob.eyebrow"></span>
+      <h2 data-i18n="prob.h2"></h2>
+      <p data-i18n="prob.p"></p>
+    </div>
+
+    <div class="problem-layout">
+      <div class="problem-list reveal">
+        <h3 data-i18n="prob.listTitle"></h3>
+        <ul>
+          <li><span class="x" aria-hidden="true">&#10005;</span><span data-i18n="prob.p1"></span></li>
+          <li><span class="x" aria-hidden="true">&#10005;</span><span data-i18n="prob.p2"></span></li>
+          <li><span class="x" aria-hidden="true">&#10005;</span><span data-i18n="prob.p3"></span></li>
+          <li><span class="x" aria-hidden="true">&#10005;</span><span data-i18n="prob.p4"></span></li>
+          <li><span class="x" aria-hidden="true">&#10005;</span><span data-i18n="prob.p5"></span></li>
+          <li><span class="x" aria-hidden="true">&#10005;</span><span data-i18n="prob.p6"></span></li>
+        </ul>
+      </div>
+
+      <div class="solution-panel reveal">
+        <h3 data-i18n="prob.solTitle"></h3>
+        <p data-i18n="prob.solP"></p>
+        <ul>
+          <li><span class="tick" aria-hidden="true">&#10003;</span><span data-i18n-html="prob.s1"></span></li>
+          <li><span class="tick" aria-hidden="true">&#10003;</span><span data-i18n-html="prob.s2"></span></li>
+          <li><span class="tick" aria-hidden="true">&#10003;</span><span data-i18n-html="prob.s3"></span></li>
+          <li><span class="tick" aria-hidden="true">&#10003;</span><span data-i18n-html="prob.s4"></span></li>
+          <li><span class="tick" aria-hidden="true">&#10003;</span><span data-i18n-html="prob.s5"></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 04: SERVICES
+     ============================================================ -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="svc.eyebrow"></span>
+      <h2 data-i18n="svc.h2"></h2>
+      <p data-i18n="svc.p"></p>
+    </div>
+
+    <div class="svc-grid">
+      <article class="svc reveal">
+        <div class="head"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></div><h3 data-i18n="svc.s1t"></h3></div>
+        <p data-i18n-html="svc.s1p"></p>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a3 3 0 006 0V3"/><path d="M10 11v10"/><path d="M17 3c-1.5 2-1.5 6 0 8v10"/></svg></div><h3 data-i18n="svc.s2t"></h3></div>
+        <p data-i18n-html="svc.s2p"></p>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M5 20V8l7-4 7 4v12"/><path d="M10 20v-5h4v5"/></svg></div><h3 data-i18n="svc.s3t"></h3></div>
+        <p data-i18n-html="svc.s3p"></p>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H3"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg></div><h3 data-i18n="svc.s4t"></h3></div>
+        <p data-i18n-html="svc.s4p"></p>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M4 17l5-4 4 3 3-2 4 3"/></svg></div><h3 data-i18n="svc.s5t"></h3></div>
+        <p data-i18n-html="svc.s5p"></p>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13H11l-1 9 8.5-11H12l1-9z"/></svg></div><h3 data-i18n="svc.s6t"></h3></div>
+        <p data-i18n-html="svc.s6p"></p>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg></div><h3 data-i18n="svc.s7t"></h3></div>
+        <p data-i18n-html="svc.s7p"></p>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h3 data-i18n="svc.s8t"></h3></div>
+        <p data-i18n-html="svc.s8p"></p>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-12.2 7.5L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z"/></svg></div><h3 data-i18n="svc.s9t"></h3></div>
+        <p data-i18n-html="svc.s9p"></p>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 000 18 14 14 0 000-18z"/></svg></div><h3 data-i18n="svc.s10t"></h3></div>
+        <p data-i18n-html="svc.s10p"></p>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 01-6.1 6.1L4 17v3h3l4.6-4.6a4.5 4.5 0 016.1-6.1l-2.7 2.7-2.1-2.1 2.8-2.6z"/></svg></div><h3 data-i18n="svc.s11t"></h3></div>
+        <p data-i18n-html="svc.s11p"></p>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div><h3 data-i18n="svc.s12t"></h3></div>
+        <p data-i18n-html="svc.s12p"></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 05: WHY CHOOSE US
+     ============================================================ -->
+<section class="ground-navy" id="whyus">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="whyus.eyebrow"></span>
+      <h2 data-i18n="whyus.h2"></h2>
+      <p data-i18n="whyus.p"></p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why reveal"><span class="n">01</span><div><h3 data-i18n="whyus.w1t"></h3><p data-i18n="whyus.w1p"></p></div></div>
+      <div class="why reveal"><span class="n">02</span><div><h3 data-i18n="whyus.w2t"></h3><p data-i18n="whyus.w2p"></p></div></div>
+      <div class="why reveal"><span class="n">03</span><div><h3 data-i18n="whyus.w3t"></h3><p data-i18n="whyus.w3p"></p></div></div>
+      <div class="why reveal"><span class="n">04</span><div><h3 data-i18n="whyus.w4t"></h3><p data-i18n="whyus.w4p"></p></div></div>
+      <div class="why reveal"><span class="n">05</span><div><h3 data-i18n="whyus.w5t"></h3><p data-i18n="whyus.w5p"></p></div></div>
+      <div class="why reveal"><span class="n">06</span><div><h3 data-i18n="whyus.w6t"></h3><p data-i18n="whyus.w6p"></p></div></div>
+      <div class="why reveal"><span class="n">07</span><div><h3 data-i18n="whyus.w7t"></h3><p data-i18n="whyus.w7p"></p></div></div>
+      <div class="why reveal"><span class="n">08</span><div><h3 data-i18n="whyus.w8t"></h3><p data-i18n="whyus.w8p"></p></div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 06: PORTFOLIO — PLACEHOLDER PROJECTS
+     Replace these six cards with real work. Until you do, the
+     demo badge above them must stay.
+     ============================================================ -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="work.eyebrow"></span>
+      <h2 data-i18n="work.h2"></h2>
+      <span class="demo-tag" data-i18n="work.demo"></span>
+      <p data-i18n="work.p"></p>
+    </div>
+
+    <div class="port-grid">
+      <article class="port reveal">
+        <div class="port-shot" style="background: linear-gradient(135deg,#0B2545,#13315C);">
+          <div class="browser">
+            <div class="browser-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">saruketha.lk</span></div>
+            <div class="browser-page">
+              <div class="bp-hero" style="background:linear-gradient(120deg,#0B2545,#3D5A80);"></div>
+              <div class="bp-row"><div class="bp-tile"></div><div class="bp-tile"></div><div class="bp-tile"></div></div>
+              <div class="bp-lines"><i></i><i></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="port-info">
+          <span class="cat" data-i18n="work.c1"></span>
+          <h3 data-i18n="work.n1"></h3>
+          <p data-i18n="work.d1"></p>
+          <div class="port-tags"><span>Menu</span><span>Booking</span><span>WhatsApp</span></div>
+        </div>
+      </article>
+
+      <article class="port reveal">
+        <div class="port-shot" style="background: linear-gradient(135deg,#F2B705,#FF5A1F);">
+          <div class="browser">
+            <div class="browser-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">nimalhardware.lk</span></div>
+            <div class="browser-page">
+              <div class="bp-hero" style="background:linear-gradient(120deg,#F2B705,#FF8A3D);"></div>
+              <div class="bp-row"><div class="bp-tile"></div><div class="bp-tile"></div></div>
+              <div class="bp-lines"><i></i><i></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="port-info">
+          <span class="cat" data-i18n="work.c2"></span>
+          <h3 data-i18n="work.n2"></h3>
+          <p data-i18n="work.d2"></p>
+          <div class="port-tags"><span>Catalogue</span><span>SEO</span><span>Maps</span></div>
+        </div>
+      </article>
+
+      <article class="port reveal">
+        <div class="port-shot" style="background: linear-gradient(135deg,#17795E,#3D5A80);">
+          <div class="browser">
+            <div class="browser-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">sithumvilla.lk</span></div>
+            <div class="browser-page">
+              <div class="bp-hero" style="background:linear-gradient(120deg,#17795E,#5BB89A);"></div>
+              <div class="bp-row"><div class="bp-tile"></div><div class="bp-tile"></div><div class="bp-tile"></div></div>
+              <div class="bp-lines"><i></i><i></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="port-info">
+          <span class="cat" data-i18n="work.c3"></span>
+          <h3 data-i18n="work.n3"></h3>
+          <p data-i18n="work.d3"></p>
+          <div class="port-tags"><span>Gallery</span><span>Booking</span><span>English</span></div>
+        </div>
+      </article>
+
+      <article class="port reveal">
+        <div class="port-shot" style="background: linear-gradient(135deg,#7A2E8E,#C4342A);">
+          <div class="browser">
+            <div class="browser-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">kalanisalon.lk</span></div>
+            <div class="browser-page">
+              <div class="bp-hero" style="background:linear-gradient(120deg,#7A2E8E,#D45A9E);"></div>
+              <div class="bp-row"><div class="bp-tile"></div><div class="bp-tile"></div></div>
+              <div class="bp-lines"><i></i><i></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="port-info">
+          <span class="cat" data-i18n="work.c4"></span>
+          <h3 data-i18n="work.n4"></h3>
+          <p data-i18n="work.d4"></p>
+          <div class="port-tags"><span>Services</span><span>Appointments</span></div>
+        </div>
+      </article>
+
+      <article class="port reveal">
+        <div class="port-shot" style="background: linear-gradient(135deg,#13315C,#F2B705);">
+          <div class="browser">
+            <div class="browser-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">pahasaraclasses.lk</span></div>
+            <div class="browser-page">
+              <div class="bp-hero" style="background:linear-gradient(120deg,#13315C,#3D5A80);"></div>
+              <div class="bp-row"><div class="bp-tile"></div><div class="bp-tile"></div><div class="bp-tile"></div></div>
+              <div class="bp-lines"><i></i><i></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="port-info">
+          <span class="cat" data-i18n="work.c5"></span>
+          <h3 data-i18n="work.n5"></h3>
+          <p data-i18n="work.d5"></p>
+          <div class="port-tags"><span>Timetable</span><span>Registration</span></div>
+        </div>
+      </article>
+
+      <article class="port reveal">
+        <div class="port-shot" style="background: linear-gradient(135deg,#0B2545,#17795E);">
+          <div class="browser">
+            <div class="browser-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">sewanapharmacy.lk</span></div>
+            <div class="browser-page">
+              <div class="bp-hero" style="background:linear-gradient(120deg,#17795E,#8DC3B0);"></div>
+              <div class="bp-row"><div class="bp-tile"></div><div class="bp-tile"></div></div>
+              <div class="bp-lines"><i></i><i></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="port-info">
+          <span class="cat" data-i18n="work.c6"></span>
+          <h3 data-i18n="work.n6"></h3>
+          <p data-i18n="work.d6"></p>
+          <div class="port-tags"><span>Maps</span><span>WhatsApp</span><span>SEO</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 07: PROCESS
+     ============================================================ -->
+<section class="ground-mist" id="process">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="proc.eyebrow"></span>
+      <h2 data-i18n="proc.h2"></h2>
+      <p data-i18n="proc.p"></p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal"><div class="n">01</div><h3 data-i18n="proc.t1"></h3><p data-i18n="proc.d1"></p><div class="dur" data-i18n="proc.u1"></div></div>
+      <div class="step reveal"><div class="n">02</div><h3 data-i18n="proc.t2"></h3><p data-i18n="proc.d2"></p><div class="dur" data-i18n="proc.u2"></div></div>
+      <div class="step reveal"><div class="n">03</div><h3 data-i18n="proc.t3"></h3><p data-i18n="proc.d3"></p><div class="dur" data-i18n="proc.u3"></div></div>
+      <div class="step reveal"><div class="n">04</div><h3 data-i18n="proc.t4"></h3><p data-i18n="proc.d4"></p><div class="dur" data-i18n="proc.u4"></div></div>
+      <div class="step reveal"><div class="n">05</div><h3 data-i18n="proc.t5"></h3><p data-i18n="proc.d5"></p><div class="dur" data-i18n="proc.u5"></div></div>
+      <div class="step reveal"><div class="n">06</div><h3 data-i18n="proc.t6"></h3><p data-i18n="proc.d6"></p><div class="dur" data-i18n="proc.u6"></div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 08: TESTIMONIALS — PLACEHOLDER FEEDBACK
+     These three people are invented. Replace them with real
+     customer feedback; until then the demo badge must stay.
+     ============================================================ -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="tst.eyebrow"></span>
+      <h2 data-i18n="tst.h2"></h2>
+      <span class="demo-tag" data-i18n="tst.demo"></span>
+    </div>
+
+    <div class="tst-grid">
+      <article class="tst reveal">
+        <div class="stars" data-i18n-aria="tst.starsAria">★★★★★</div>
+        <blockquote data-i18n="tst.q1"></blockquote>
+        <div class="who">
+          <span class="av" style="background:#0B2545;">නප</span>
+          <span><span class="nm" data-i18n="tst.n1"></span><br><span class="rl" data-i18n="tst.r1"></span></span>
+        </div>
+      </article>
+      <article class="tst reveal">
+        <div class="stars" data-i18n-aria="tst.starsAria">★★★★★</div>
+        <blockquote data-i18n="tst.q2"></blockquote>
+        <div class="who">
+          <span class="av" style="background:#17795E;">සද</span>
+          <span><span class="nm" data-i18n="tst.n2"></span><br><span class="rl" data-i18n="tst.r2"></span></span>
+        </div>
+      </article>
+      <article class="tst reveal">
+        <div class="stars" data-i18n-aria="tst.starsAria">★★★★★</div>
+        <blockquote data-i18n="tst.q3"></blockquote>
+        <div class="who">
+          <span class="av" style="background:#FF5A1F;">කජ</span>
+          <span><span class="nm" data-i18n="tst.n3"></span><br><span class="rl" data-i18n="tst.r3"></span></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 09: FAQ
+     <details> is used so the accordion works without JavaScript.
+     ============================================================ -->
+<section class="ground-mist" id="faq">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="faq.eyebrow"></span>
+      <h2 data-i18n="faq.h2"></h2>
+      <p data-i18n="faq.p"></p>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq reveal" open>
+        <summary><span data-i18n="faq.q1"></span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans" data-i18n-html="faq.a1"></div>
+      </details>
+      <details class="faq reveal">
+        <summary><span data-i18n="faq.q2"></span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans" data-i18n-html="faq.a2"></div>
+      </details>
+      <details class="faq reveal">
+        <summary><span data-i18n="faq.q3"></span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans" data-i18n-html="faq.a3"></div>
+      </details>
+      <details class="faq reveal">
+        <summary><span data-i18n="faq.q4"></span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans" data-i18n-html="faq.a4"></div>
+      </details>
+      <details class="faq reveal">
+        <summary><span data-i18n="faq.q5"></span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans" data-i18n-html="faq.a5"></div>
+      </details>
+      <details class="faq reveal">
+        <summary><span data-i18n="faq.q6"></span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans" data-i18n-html="faq.a6"></div>
+      </details>
+      <details class="faq reveal">
+        <summary><span data-i18n="faq.q7"></span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans" data-i18n-html="faq.a7"></div>
+      </details>
+      <details class="faq reveal">
+        <summary><span data-i18n="faq.q8"></span><span class="pm" aria-hidden="true">+</span></summary>
+        <div class="ans" data-i18n-html="faq.a8"></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 10: FINAL CTA
+     ============================================================ -->
+<section class="final" id="contact">
+  <div class="wrap inner">
+    <div class="reveal">
+      <h2 data-i18n="final.h2"></h2>
+      <p class="lead" data-i18n="final.lead"></p>
+      <p class="sub" data-i18n="final.sub"></p>
+
+      <div class="final-actions">
+        <a href="#" class="btn btn-wa" data-cta="whatsapp">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.4 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+          <span data-i18n="final.wa"></span>
+        </a>
+        <a href="#" class="btn btn-primary" data-cta="call">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>
+          <span data-i18n="final.call"></span>
+        </a>
+        <a href="#" class="btn btn-ghost" data-cta="email" data-i18n="final.email"></a>
+      </div>
+
+      <p class="final-note" data-i18n="final.note"></p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">
+          <svg viewBox="0 0 84 84" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:38px;height:38px;" aria-hidden="true">
+            <rect width="84" height="84" rx="20" fill="#FF5A1F"/>
+            <path d="M24 44 L42 24 L60 44" stroke="#FFF8F0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M42 24 L42 60" stroke="#FFF8F0" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="42" cy="66" r="4.5" fill="#F2B705"/>
+          </svg>
+          <span class="logo-text">Site<span class="si">රෙඩී</span></span>
+        </div>
+        <p class="tagline" data-i18n="foot.tagline"></p>
+      </div>
+
+      <div>
+        <h4 data-i18n="foot.hServices"></h4>
+        <ul>
+          <li><a href="#services" data-i18n="foot.l1"></a></li>
+          <li><a href="#services" data-i18n="foot.l2"></a></li>
+          <li><a href="#services" data-i18n="foot.l3"></a></li>
+          <li><a href="#services" data-i18n="foot.l4"></a></li>
+          <li><a href="#services" data-i18n="foot.l5"></a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 data-i18n="foot.hContact"></h4>
+        <ul>
+          <li><a href="#" data-cta="whatsapp" data-i18n="foot.c1"></a></li>
+          <li><a href="#" data-cta="call"     data-i18n="foot.c2"></a></li>
+          <li><a href="#" data-cta="email"    data-i18n="foot.c3"></a></li>
+          <li><a href="#faq"                  data-i18n="foot.c4"></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>&copy; <span id="yr">2026</span> Site රෙඩී &middot; siteredi.lk</span>
+      <span data-i18n="foot.demo"></span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /#page -->
+
+
+<!-- FLOATING WHATSAPP -->
+<a href="#" class="wa-float" data-cta="whatsapp" data-i18n-aria="foot.waAria">
+  <span class="pulse" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.4 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+  <span class="lbl">WhatsApp</span>
+</a>
+
+
+<!-- ============================================================
+     SCRIPTS
+     Order matters: config → language files → engine → behaviour.
+     Plain <script> tags are used deliberately (rather than fetching
+     JSON) so the site also works when opened directly from disk
+     with file://, where fetch is blocked by CORS.
+
+     TO ADD A LANGUAGE: add one line to the language block below.
+     ============================================================ -->
+<script>
+/* ============================================================
+   SITE රෙඩී — SITE CONFIGURATION
+   ------------------------------------------------------------
+   ►►► EDIT THIS FILE FIRST. It is the only file you must change
+       to put the site live with your own details. ◄◄◄
+   ============================================================ */
+
+window.SITE_CONFIG = {
+
+  /* ---- Contact details -----------------------------------
+     Every WhatsApp button, call button, email link and footer
+     link on the site is generated from these three values.
+     ---------------------------------------------------------- */
+  phone:    '+94770000000',   // shown/dialled on "call" buttons
+  whatsapp: '94770000000',    // country code first, NO + and NO spaces
+  email:    'hello@siteredi.lk',
+
+  /* ---- Language ------------------------------------------
+     defaultLang  the language a first-time visitor sees.
+     languages    the list shown in the switcher, in order.
+                  `native` is how the language names ITSELF —
+                  always write it in its own script.
+
+     TO ADD A LANGUAGE:
+       1. add a row here,
+       2. create assets/js/lang/<code>.js,
+       3. add its <script> tag in index.html,
+       4. if it needs a different font, add a rule in styles.css
+          under "2. PER-LANGUAGE TYPOGRAPHY".
+     ---------------------------------------------------------- */
+  defaultLang: 'si',
+  languages: [
+    { code: 'si', native: 'සිංහල'   },
+    { code: 'ta', native: 'தமிழ்'    },
+    { code: 'en', native: 'English' }
+  ],
+
+  /* Key used to remember the visitor's choice in their browser. */
+  storageKey: 'siteredi.lang',
+
+  /* ---- Demo content flag ---------------------------------
+     The portfolio and testimonials on this site are PLACEHOLDERS.
+     While this is true, both sections show a visible "demo" badge
+     so nobody mistakes them for real clients. Set it to false only
+     once you have replaced them with genuine work and genuine
+     customer feedback.
+     ---------------------------------------------------------- */
+  showDemoBadges: true
+};
+
+
+/* ============================================================
+   SITE රෙඩී — LANGUAGE FILE: Sinhala / සිංහල (si)
+   ------------------------------------------------------------
+   This file holds every visible string for this language.
+   Nothing here is referenced by position — only by its dot-path
+   key (e.g. "hero.h1a"), which the markup names in a data-i18n
+   attribute. Reorder or reformat freely; just don't rename keys.
+
+   Missing keys fall back to Sinhala, so a partial translation
+   still renders a complete, working page.
+   ============================================================ */
+
+window.SITEREDI_I18N = window.SITEREDI_I18N || {};
+window.SITEREDI_I18N['si'] = {
+  meta: { title: 'Site රෙඩී — ව්‍යාපාරික Website' },
+
+  nav: {
+    why: 'ඇයි Website එකක්?',
+    services: 'සේවා',
+    work: 'ව්‍යාපෘති',
+    process: 'ක්‍රියාවලිය',
+    faq: 'ප්‍රශ්න',
+    contact: 'සම්බන්ධ වන්න',
+    cta: 'මිල ගණන් ගන්න',
+    menuAria: 'මෙනුව',
+    homeAria: 'Site රෙඩී — මුල් පිටුව',
+    langAria: 'භාෂාව තෝරන්න'
+  },
+
+  hero: {
+    badge: 'ශ්‍රී ලාංකික ව්‍යාපාර සඳහාම නිර්මාණය කළ සේවාවක්',
+    h1a: 'ඔබේ ව්‍යාපාරයත් ',
+    h1hl: 'අන්තර්ජාලයට',
+    h1b: ' ගෙන යමු.',
+    quote: '"හොඳ Website එකක් කියන්නේ වියදමක් නෙවෙයි — ඒක ඔබේ ව්‍යාපාරයට කරන ආයෝජනයක්."',
+    sub: 'තාක්ෂණික දේවල් ගැන කරදර වෙන්න එපා. අපි ඔබට තේරෙන සරල සිංහලෙන් කතා කරලා, දින 7ක් ඇතුළත ඔබේ ව්‍යාපාරයට ගැළපෙන Website එකක් සූදානම් කරලා දෙනවා.',
+    wa: 'WhatsApp එකෙන් කතා කරන්න',
+    packages: 'පැකේජ බලන්න',
+    note: 'පළමු සාකච්ඡාව නොමිලේ · සිංහල, දෙමළ සහ English සහය',
+    chipDays: 'දින ඇතුළත භාරදීම',
+    chipMobile: 'Mobile Friendly',
+    phoneAlt: 'ජංගම දුරකථනයක පෙන්වන නියැදි ව්‍යාපාරික Website එකක්',
+    phoneBrand: 'ඔබේ ව්‍යාපාරය',
+    phoneH: 'ඔබේ පාරිභෝගිකයන් අද Online ඉන්නවා.',
+    phoneP: 'දැන් ඔබත් එතන ඉන්න ඕන.',
+    phoneBtn: 'දැන් අමතන්න'
+  },
+
+  trust: {
+    projects: 'සම්පූර්ණ කළ ව්‍යාපෘති',
+    days: 'දින — සාමාන්‍ය භාරදීම',
+    happy: 'සතුටු පාරිභෝගිකයන්',
+    support: 'WhatsApp සහය'
+  },
+
+  why: {
+    eyebrow: 'ඇයි Website එකක්?',
+    h2: 'ඔබේ ව්‍යාපාරයට Website එකක් අවශ්‍ය ඇයි?',
+    p: 'තාක්ෂණික වචන නැතුව, සරලව කිව්වොත් — ඔබේ පාරිභෝගිකයා දැනටමත් අන්තර්ජාලයේ ඉන්නවා. ප්‍රශ්නය තියෙන්නේ, ඔහුට ඔබව හම්බවෙනවද කියන එකයි.',
+    b1t: 'මිනිස්සු අද හොයන්නේ Google එකෙන්',
+    b1p: '"ළඟම තියෙන සැලූන් එක", "හොඳ කේක් ශොප් එකක්" වගේ දේවල් දිනපතා දහස් ගණනක් සොයනවා. ඔබ එතන නැත්නම්, ඒ පාරිභෝගිකයා යන්නේ තව කෙනෙක් ළඟට.',
+    b2t: 'විශ්වාසය ගොඩනැගෙනවා',
+    b2p: 'Website එකක් තියෙන ව්‍යාපාරයක් මිනිස්සුන්ට වඩාත් විශ්වාසදායකයි. විශේෂයෙන් ලොකු ඇණවුමක් දෙන්න කලින්, පාරිභෝගිකයා ඔබ ගැන අන්තර්ජාලයෙන් බලනවා.',
+    b3t: 'පැය 24ම විවෘතයි',
+    b3p: 'කඩේ වහලා ගියත්, ඔබ නිදාගෙන ඉන්නකොටත් ඔබේ Website එක පාරිභෝගිකයන්ට උත්තර දෙනවා — මිල ගණන්, විවෘත වේලාවන්, ලිපිනය, දුරකථන අංකය.',
+    b4t: 'විකුණුම් වැඩි වෙනවා',
+    b4p: 'ඔබේ නිෂ්පාදන, මිල ගණන් සහ ඡායාරූප එකම තැනක. පාරිභෝගිකයාට හැම දෙයක්ම බලලා, එතනින්ම WhatsApp එකෙන් ඇණවුම දෙන්න පුළුවන්.',
+    b5t: 'වෘත්තීය පෙනුමක්',
+    b5p: 'කුඩා ව්‍යාපාරයක් වුණත්, හොඳ Website එකකින් ලොකු සමාගමක් වගේ පෙනුමක් ලැබෙනවා. ඒක පාරිභෝගිකයාගේ තීරණයට කෙළින්ම බලපානවා.',
+    b6t: 'තරඟයේ ඉදිරියෙන්',
+    b6p: 'ඔබේ ක්ෂේත්‍රයේ තරඟකරුවන් තාම Website එකක් හදලා නැත්නම් — දැන් තමයි හොඳම වෙලාව. ඔවුන් ඉස්සරහට යන්න කලින් ඔබ ඉස්සරහට යන්න.'
+  },
+
+  prob: {
+    eyebrow: 'ඇත්ත තත්ත්වය',
+    h2: 'Website එකක් නැත්නම් මොකද වෙන්නේ?',
+    p: 'මේවා අපි ශ්‍රී ලංකාවේ ව්‍යාපාරිකයන්ගෙන් නිතරම අහන දේවල්.',
+    listTitle: 'Website එකක් නැති ව්‍යාපාරයක ප්‍රශ්න',
+    p1: 'පාරිභෝගිකයන් ඔබේ ව්‍යාපාරයේ නම අමතක කරනවා. නැවත හොයාගන්න ක්‍රමයක් නැහැ.',
+    p2: 'Facebook post එක දවස් දෙක තුනකින් අනිත් post අතරේ නැති වෙනවා.',
+    p3: 'නව පාරිභෝගිකයන් ඔබ ගැන විශ්වාස කරන්න මැළි වෙනවා.',
+    p4: 'මිල ගණන් සහ විස්තර නැවත නැවත එකම call එකෙන් කියන්න වෙනවා.',
+    p5: 'Google එකේ හෙව්වත් ඔබේ ව්‍යාපාරය හම්බවෙන්නේ නැහැ.',
+    p6: 'තරඟකරුවන් Online ගිහින්, ඔබේ පාරිභෝගිකයන් අරන් යනවා.',
+    solTitle: 'අපි මේ හැම ප්‍රශ්නයක්ම විසඳනවා',
+    solP: 'ඔබට කරන්න තියෙන්නේ ඔබේ ව්‍යාපාරය ගැන අපිට කියන එක විතරයි. ඉතිරි හැම දෙයක්ම අපි බලාගන්නවා.',
+    s1: 'ඔබේම ලිපිනයක් — <span class="en">yourbusiness.lk</span> වගේ, කවදාවත් නැති නොවෙන.',
+    s2: 'Google එකේ ඔබේ ව්‍යාපාරය හම්බවෙන විදිහට සකස් කරනවා.',
+    s3: 'මිල ගණන්, සේවා, ඡායාරූප — හැම දෙයක්ම එකම තැනක.',
+    s4: 'WhatsApp බොත්තමක් — පාරිභෝගිකයාට එක click එකකින් ඔබට කතා කරන්න.',
+    s5: 'Mobile එකේ ලස්සනට වැඩ කරනවා — ලංකාවේ බොහෝ දෙනෙක් බලන්නේ ඒකෙන්.'
+  },
+
+  svc: {
+    eyebrow: 'අපේ සේවා',
+    h2: 'අපි ඔබට කරලා දෙන දේවල්',
+    p: 'හැම තාක්ෂණික වචනයක්ම සරල සිංහලෙන් පැහැදිලි කරලා තියෙනවා. නොතේරෙන දෙයක් තිබුණොත් අහන්න — අපි කැමතියි කියලා දෙන්න.',
+    s1t: 'Business Website',
+    s1p: 'ඔබේ ව්‍යාපාරය ගැන සම්පූර්ණ විස්තර — සේවා, ඡායාරූප, ලිපිනය, සම්බන්ධ වීමේ ක්‍රම. කුඩා ව්‍යාපාරයකට හොඳම ආරම්භය.',
+    s2t: 'Restaurant Website',
+    s2p: 'ඔබේ Menu එක, මිල ගණන්, ආහාර ඡායාරූප සහ Table Booking. පාරිභෝගිකයාට කලින්ම බලලා ඇණවුම දෙන්න පුළුවන්.',
+    s3t: 'Hotel & Villa Website',
+    s3p: 'කාමර, ඡායාරූප ගැලරිය, පහසුකම් සහ Booking පහසුකම. විදේශීය සංචාරකයන්ට ඔබව හොයාගන්න පහසුයි.',
+    s4t: 'E-commerce (Online කඩය)',
+    s4p: 'අන්තර්ජාලයෙන්ම බඩු විකුණන්න පුළුවන් Website එකක්. පාරිභෝගිකයා බඩු තෝරලා, ඇණවුම දීලා, ගෙවීම කරන්නත් පුළුවන්.',
+    s5t: 'Portfolio Website',
+    s5p: 'ඡායාරූප ශිල්පීන්, නිර්මාණකරුවන්, ඉංජිනේරුවන් සහ කලාකරුවන්ට ඔවුන්ගේ වැඩ ලස්සනට පෙන්වන්න.',
+    s6t: 'Landing Page',
+    s6p: 'එක් නිෂ්පාදනයක් හෝ එක් ප්‍රවර්ධනයක් සඳහා විශේෂ පිටුවක්. දැන්වීම් වලින් එන අයව පාරිභෝගිකයන් බවට පත් කරන්න.',
+    s7t: 'SEO — Google එකේ ඉස්සරහට',
+    s7p: 'මිනිස්සු Google එකේ හොයනකොට ඔබේ ව්‍යාපාරය මුල් පිටුවේ පෙන්නන්න අවශ්‍ය සකස් කිරීම්. දිගු කාලීනව වැඩිම ප්‍රතිඵල දෙන දේ.',
+    s8t: 'Google Maps එකට එකතු කිරීම',
+    s8p: 'ඔබේ ව්‍යාපාරය Google සිතියමේ පෙන්නනවා. පාරිභෝගිකයාට "Directions" එබුවම කෙළින්ම ඔබේ කඩේට එන්න පුළුවන්.',
+    s9t: 'WhatsApp සම්බන්ධ කිරීම',
+    s9p: 'Website එකේ බොත්තමක් එබුවම කෙළින්ම ඔබේ WhatsApp එකට message එකක් එනවා. ලංකාවේ වැඩිම ඇණවුම් එන ක්‍රමය.',
+    s10t: 'Domain & Hosting',
+    s10p: '<strong>Domain</strong> කියන්නේ ඔබේ Website එකේ නම (උදා: <span class="en">yourshop.lk</span>). <strong>Hosting</strong> කියන්නේ ඒක තියෙන ඉඩම. දෙකම අපි හදලා දෙනවා.',
+    s11t: 'නඩත්තුව (Maintenance)',
+    s11p: 'Website එක හැදුවට පස්සෙත් අපි ඉන්නවා. නව ඡායාරූප, මිල ගණන් වෙනස් කිරීම්, ආරක්ෂක යාවත්කාලීන — හැම මාසෙම.',
+    s12t: 'SSL ආරක්ෂාව',
+    s12p: 'ඔබේ Website එකේ ලිපිනය අසල අගුලක් පෙන්නනවා. ඒකෙන් පාරිභෝගිකයාට ඔබේ Website එක ආරක්ෂිත බව තහවුරු වෙනවා.'
+  },
+
+  whyus: {
+    eyebrow: 'ඇයි අපිව තෝරගන්නේ?',
+    h2: 'ලංකාවේ ව්‍යාපාර තේරෙන කණ්ඩායමක්',
+    p: 'අපි විදේශීය සමාගමක් නෙවෙයි. ලංකාවේ කුඩා ව්‍යාපාරයක් කරගෙන යන එකේ අමාරුකම් අපි දන්නවා.',
+    w1t: 'තේරෙන භාෂාවෙන් කතා කරනවා',
+    w1p: 'තාක්ෂණික වචන පාවිච්චි කරලා ඔබව අවුල් කරන්නේ නැහැ. හැම දෙයක්ම සරල සිංහලෙන්.',
+    w2t: 'මිත්‍රශීලී සහය',
+    w2p: 'ප්‍රශ්නයක් ආවම WhatsApp එකෙන් අහන්න පුළුවන්. උත්තර දෙන්නේ මිනිහෙක් — bot එකක් නෙවෙයි.',
+    w3t: 'ඉක්මන් භාරදීම',
+    w3p: 'සරල ව්‍යාපාරික Website එකක් දින 5–7ක් ඇතුළත. මාස ගණන් බලාගෙන ඉන්න ඕන නැහැ.',
+    w4t: 'නවීන නිර්මාණ',
+    w4p: '2015 වගේ පෙනෙන Website නෙවෙයි. අද ලෝකයේ තියෙන හොඳම මට්ටමේ නිර්මාණ.',
+    w5t: 'Mobile මුල් කරගත් නිර්මාණය',
+    w5p: 'ලංකාවේ 80%කට වඩා බලන්නේ Mobile එකෙන්. ඒක නිසා අපි මුලින්ම Mobile එකට design කරනවා.',
+    w6t: 'දරාගත හැකි මිලක්',
+    w6p: 'කුඩා ව්‍යාපාරයකට දරාගන්න පුළුවන් මිලක්. නිශ්චිත මිල කලින්ම කියනවා — හංගපු වියදම් නැහැ.',
+    w7t: 'ආරක්ෂිතයි',
+    w7p: 'SSL ආරක්ෂාව, නිතිපතා backup සහ ආරක්ෂක යාවත්කාලීන — හැම Website එකකටම.',
+    w8t: 'දේශීය අවබෝධය',
+    w8p: 'ලංකාවේ පාරිභෝගිකයා හිතන විදිහ අපි දන්නවා. ඒක නිසා අපේ නිර්මාණ ලංකාවේ වැඩ කරනවා.'
+  },
+
+  work: {
+    eyebrow: 'අපේ වැඩ',
+    h2: 'අපි හදපු ව්‍යාපෘති',
+    demo: 'නියැදි (Demo) ව්‍යාපෘති — ඔබේ සැබෑ වැඩ මෙතන පෙන්වන්න',
+    p: 'විවිධ ක්ෂේත්‍රවල ව්‍යාපාර සඳහා අපි නිර්මාණය කරන ආකාරය මෙන්න.',
+    c1: 'Restaurant',   n1: 'සරුකෑම — ගම්පහ',        d1: 'Menu එක, ආහාර ඡායාරූප සහ Table Booking සමඟ ආපනශාලා Website එකක්.',
+    c2: 'Hardware',     n2: 'නිමල් හාඩ්වෙයාර් — කුරුණෑගල', d2: 'නිෂ්පාදන 200කට වඩා, මිල ගණන් සහ ඉක්මන් ඇණවුම් පහසුකම.',
+    c3: 'Hotel & Villa', n3: 'සිතුම් විලා — මිරිස්ස',    d3: 'කාමර ගැලරිය, පහසුකම් සහ විදේශීය සංචාරකයන් සඳහා Booking පහසුකම.',
+    c4: 'Salon',        n4: 'කලනී සැලූන් — නුගේගොඩ',   d4: 'සේවා ලැයිස්තුව, මිල ගණන් සහ Online වේලාවක් වෙන් කරගැනීම.',
+    c5: 'Tuition Class', n5: 'පහසර පන්ති — කන්දාන',    d5: 'විෂය, පන්ති වේලාවන්, ගුරු විස්තර සහ Online ලියාපදිංචිය.',
+    c6: 'Pharmacy',     n6: 'සෙවණ ෆාමසි — මහරගම',     d6: 'විවෘත වේලාවන්, ලිපිනය සහ WhatsApp හරහා බෙහෙත් ඇණවුම් කිරීම.'
+  },
+
+  proc: {
+    eyebrow: 'ක්‍රියාවලිය',
+    h2: 'ඔබේ Website එක හැදෙන විදිහ — පියවර 6ක්',
+    p: 'හැම පියවරකදීම ඔබ දන්නවා මොකද වෙන්නේ කියලා. හදිසි පුදුම වීම් නැහැ.',
+    t1: 'සම්බන්ධ වීම',    d1: 'ඔබ WhatsApp එකෙන් හෝ දුරකථනයෙන් අපිට කතා කරනවා. පළමු සාකච්ඡාව සම්පූර්ණයෙන්ම නොමිලේ.', u1: 'දවසේම',
+    t2: 'සාකච්ඡාව',      d2: 'ඔබේ ව්‍යාපාරය, පාරිභෝගිකයන් සහ අවශ්‍යතා ගැන කතා කරනවා. පස්සේ නිශ්චිත මිලක් දෙනවා.',    u2: 'දින 1–2',
+    t3: 'නිර්මාණය (Design)', d3: 'ඔබේ Website එක පේන්නේ කොහොමද කියලා අපි හදලා පෙන්නනවා. ඔබ කැමති වෙනස්කම් කරනවා.', u3: 'දින 2–3',
+    t4: 'ගොඩනැගීම (Development)', d4: 'අනුමත කරපු නිර්මාණය ඇත්තටම වැඩ කරන Website එකක් බවට පත් කරනවා.',        u4: 'දින 2–4',
+    t5: 'එළිදැක්වීම (Launch)', d5: 'Domain සහ Hosting සකසලා, ඔබේ Website එක ලෝකයට විවෘත කරනවා.',                u5: 'දින 1',
+    t6: 'අඛණ්ඩ සහය',     d6: 'ඊට පස්සෙත් අපි ඉන්නවා. වෙනස්කම්, යාවත්කාලීන සහ ප්‍රශ්නවලට උදව්.',                    u6: 'අඛණ්ඩව'
+  },
+
+  tst: {
+    eyebrow: 'පාරිභෝගික අදහස්',
+    h2: 'අපේ පාරිභෝගිකයන් කියන දේ',
+    demo: 'නියැදි අදහස් — සැබෑ පාරිභෝගික අදහස් වලින් ප්‍රතිස්ථාපනය කරන්න',
+    starsAria: 'තරු 5 ක්',
+    q1: '"මට කම්පියුටර් ගැන ලොකු දැනුමක් නැහැ. ඒත් මේ අය හැම දෙයක්ම මට තේරෙන විදිහට කිව්වා. දැන් මගේ කඩේ Google එකේ හම්බවෙනවා."',
+    n1: 'නිමල් පෙරේරා', r1: 'නිමල් හාඩ්වෙයාර්, කුරුණෑගල',
+    q2: '"Website එක හැදුවට පස්සේ Booking ගොඩක් වැඩි වුණා. විශේෂයෙන් පිටරට ඉඳන් එන අය දැන් කෙළින්ම අපිට කතා කරනවා."',
+    n2: 'සමන්ති ද සිල්වා', r2: 'සිතුම් විලා, මිරිස්ස',
+    q3: '"දින 6කින් වැඩේ ඉවර කරලා දුන්නා. මිලත් කලින් කිව්ව මිලමයි — අමතර වියදම් තිබුණේ නැහැ. හොඳ සේවයක්."',
+    n3: 'කසුන් ජයසිංහ', r3: 'පහසර පන්ති, කන්දාන'
+  },
+
+  faq: {
+    eyebrow: 'නිතර අසන ප්‍රශ්න',
+    h2: 'ඔබට තියෙන ප්‍රශ්නවලට උත්තර',
+    p: 'මෙතන නැති ප්‍රශ්නයක් තිබුණොත් WhatsApp එකෙන් අහන්න. අපි ඉක්මනින් උත්තර දෙනවා.',
+    q1: 'Website එකක් හදන්න කොච්චර කාලයක් යනවද?',
+    a1: 'සරල ව්‍යාපාරික Website එකක් සාමාන්‍යයෙන් දින 5–7ක් ඇතුළත. Online කඩයක් (E-commerce) වගේ ලොකු ව්‍යාපෘතියක් නම් සති 2–4ක් විතර යනවා. ඔබට අවශ්‍ය දිනය කලින්ම කිව්වොත් අපි ඒකට සැලසුම් කරනවා.',
+    q2: 'Website එකක වියදම කොච්චරද?',
+    a2: 'ඒක ඔබට අවශ්‍ය දේවල් අනුව වෙනස් වෙනවා. පිටු කීයක් තියෙනවද, Online විකුණුම් අවශ්‍යද වගේ දේවල් මිලට බලපානවා. අපි කරන්නේ — ඔබේ අවශ්‍යතාව අහලා, <strong>නිශ්චිත මිලක්</strong> කලින්ම ලිඛිතව දෙනවා. පස්සේ හංගපු වියදම් එකතු වෙන්නේ නැහැ.',
+    q3: 'Domain කියන්නේ මොකක්ද?',
+    a3: 'Domain කියන්නේ ඔබේ Website එකේ <strong>නම</strong>. උදාහරණයක් විදිහට <span class="en">nimalhardware.lk</span>. පාරිභෝගිකයා browser එකේ ටයිප් කරන්නේ ඒක. ඒක ඔබේ ව්‍යාපාරයේ අන්තර්ජාල ලිපිනය වගේ.',
+    q4: 'Hosting කියන්නේ මොකක්ද?',
+    a4: 'Hosting කියන්නේ ඔබේ Website එකේ ෆයිල්, ඡායාරූප සහ විස්තර ගබඩා වෙන <strong>ඉඩම</strong>. සරලව කිව්වොත් — Domain එක ඔබේ කඩේ නම නම්, Hosting එක ඔබේ කඩේ ඉඩම. දෙකම අවශ්‍යයි, දෙකම අපි සකසලා දෙනවා.',
+    q5: 'Website එක Mobile වල හරියට වැඩ කරනවද?',
+    a5: 'ඔව්. ඔබේ Website එක Mobile, Tablet සහ Computer තුනේම ලස්සනට ක්‍රියා කරයි. ශ්‍රී ලංකාවේ බොහෝ දෙනෙක් අන්තර්ජාලය බලන්නේ Mobile එකෙන් නිසා, අපි <strong>මුලින්ම Mobile එකට</strong> design කරලා පස්සේ තමයි ලොකු තිරවලට ගළපන්නේ.',
+    q6: 'මට තාක්ෂණික දැනුමක් නැහැ. මටත් පුළුවන්ද?',
+    a6: 'ඇත්තටම, අපේ පාරිභෝගිකයන්ගෙන් වැඩිම දෙනෙක් ඒ වගේ. ඔබ දැනගන්න ඕන Website කේත ගැන නෙවෙයි — <strong>ඔබේ ව්‍යාපාරය ගැන විතරයි</strong>. ඉතිරි හැම දෙයක්ම අපි බලාගන්නවා, සරල සිංහලෙන් පැහැදිලි කරලා.',
+    q7: 'Website එක හැදුවට පස්සේ වෙනස්කම් කරන්න පුළුවන්ද?',
+    a7: 'පුළුවන්. නව ඡායාරූප, මිල ගණන් වෙනස් කිරීම්, නව සේවා එකතු කිරීම — හැම දෙයක්ම කරන්න පුළුවන්. ඒ සඳහා මාසික නඩත්තු පැකේජයක් තියෙනවා, නැත්නම් අවශ්‍ය වෙලාවට විතරක් කරගන්නත් පුළුවන්.',
+    q8: 'ගෙවීම් කරන්නේ කොහොමද?',
+    a8: 'සාමාන්‍යයෙන් කොටස් දෙකකින් — වැඩ පටන් ගන්නකොට 50%ක් සහ Website එක එළිදක්වනකොට ඉතිරි 50%. බැංකු මාරු කිරීම් සහ ප්‍රධාන ගෙවීම් ක්‍රම පිළිගන්නවා.'
+  },
+
+  final: {
+    h2: 'ඔබේ ව්‍යාපාරය ඊළඟ මට්ටමට ගෙන යමු.',
+    lead: '"Website එකක් නැති ව්‍යාපාරයක් අද ලෝකයට නොපෙනෙන ව්‍යාපාරයක්."',
+    sub: 'අදම කතා කරන්න. පළමු සාකච්ඡාව නොමිලේ — ඔබේ ව්‍යාපාරයට Website එකක් වටිනවද නැද්ද කියලා අවංකව කියනවා. බලෙන් විකුණන්නේ නැහැ.',
+    wa: 'WhatsApp කරන්න',
+    call: 'දුරකථනයෙන් අමතන්න',
+    email: 'Email කරන්න',
+    note: 'සාමාන්‍යයෙන් මිනිත්තු 30ක් ඇතුළත පිළිතුරු දෙනවා · සතියේ දිනවල පෙ.ව. 9 – ප.ව. 7'
+  },
+
+  foot: {
+    tagline: 'ශ්‍රී ලංකාවේ කුඩා ව්‍යාපාර අන්තර්ජාලයට ගෙන යන, ඔබට තේරෙන භාෂාවෙන් කතා කරන කණ්ඩායම.',
+    hServices: 'සේවා',
+    l1: 'ව්‍යාපාරික Website',
+    l2: 'Online කඩ (E-commerce)',
+    l3: 'Hotel & Villa Website',
+    l4: 'SEO සහ Google Maps',
+    l5: 'නඩත්තුව',
+    hContact: 'සම්බන්ධ වන්න',
+    c1: 'WhatsApp', c2: 'දුරකථනය', c3: 'Email', c4: 'නිතර අසන ප්‍රශ්න',
+    demo: 'මෙය නියැදි (Demo) Website එකකි.',
+    waAria: 'WhatsApp එකෙන් කතා කරන්න'
+  },
+
+  wa: { prefill: 'ආයුබෝවන්! මට Website එකක් ගැන දැනගන්න ඕන.' }
+};
+
+
+/* ============================================================
+   SITE රෙඩී — LANGUAGE FILE: Tamil / தமிழ் (ta)
+   ------------------------------------------------------------
+   This file holds every visible string for this language.
+   Nothing here is referenced by position — only by its dot-path
+   key (e.g. "hero.h1a"), which the markup names in a data-i18n
+   attribute. Reorder or reformat freely; just don't rename keys.
+
+   Missing keys fall back to Sinhala, so a partial translation
+   still renders a complete, working page.
+   ============================================================ */
+
+window.SITEREDI_I18N = window.SITEREDI_I18N || {};
+window.SITEREDI_I18N['ta'] = {
+  meta: { title: 'Site රෙඩී — வணிக Website' },
+
+  nav: {
+    why: 'ஏன் Website?',
+    services: 'சேவைகள்',
+    work: 'திட்டங்கள்',
+    process: 'செயல்முறை',
+    faq: 'கேள்விகள்',
+    contact: 'தொடர்பு கொள்ளுங்கள்',
+    cta: 'விலை பெறுங்கள்',
+    menuAria: 'மெனு',
+    homeAria: 'Site රෙඩී — முகப்பு பக்கம்',
+    langAria: 'மொழியைத் தேர்ந்தெடுக்கவும்'
+  },
+
+  hero: {
+    badge: 'இலங்கை வணிகங்களுக்காகவே உருவாக்கப்பட்ட சேவை',
+    h1a: 'உங்கள் வணிகத்தையும் ',
+    h1hl: 'இணையத்திற்கு',
+    h1b: ' கொண்டு செல்வோம்.',
+    quote: '"நல்ல Website ஒன்று செலவல்ல — அது உங்கள் வணிகத்திற்கான முதலீடு."',
+    sub: 'தொழில்நுட்ப விஷயங்களைப் பற்றி கவலைப்பட வேண்டாம். உங்களுக்குப் புரியும் எளிய தமிழில் பேசி, 7 நாட்களுக்குள் உங்கள் வணிகத்திற்கு ஏற்ற Website ஒன்றைத் தயார் செய்து தருகிறோம்.',
+    wa: 'WhatsApp இல் பேசுங்கள்',
+    packages: 'தொகுப்புகளைப் பாருங்கள்',
+    note: 'முதல் ஆலோசனை இலவசம் · சிங்களம், தமிழ் மற்றும் English ஆதரவு',
+    chipDays: 'நாட்களுக்குள் வழங்கல்',
+    chipMobile: 'Mobile Friendly',
+    phoneAlt: 'கைபேசியில் காட்டப்படும் மாதிரி வணிக Website',
+    phoneBrand: 'உங்கள் வணிகம்',
+    phoneH: 'உங்கள் வாடிக்கையாளர்கள் இன்று Online இல் இருக்கிறார்கள்.',
+    phoneP: 'இப்போது நீங்களும் அங்கே இருக்க வேண்டும்.',
+    phoneBtn: 'இப்போதே அழைக்கவும்'
+  },
+
+  trust: {
+    projects: 'நிறைவு செய்த திட்டங்கள்',
+    days: 'நாட்கள் — சராசரி வழங்கல்',
+    happy: 'திருப்தியான வாடிக்கையாளர்கள்',
+    support: 'WhatsApp ஆதரவு'
+  },
+
+  why: {
+    eyebrow: 'ஏன் Website ஒன்று?',
+    h2: 'உங்கள் வணிகத்திற்கு ஏன் Website தேவை?',
+    p: 'தொழில்நுட்பச் சொற்கள் இல்லாமல் எளிமையாகச் சொன்னால் — உங்கள் வாடிக்கையாளர் ஏற்கனவே இணையத்தில் இருக்கிறார். கேள்வி என்னவென்றால், அவருக்கு உங்களைக் கண்டுபிடிக்க முடிகிறதா என்பதுதான்.',
+    b1t: 'மக்கள் இன்று Google இல் தேடுகிறார்கள்',
+    b1p: '"அருகிலுள்ள சலூன்", "நல்ல கேக் கடை" போன்றவை தினமும் ஆயிரக்கணக்கில் தேடப்படுகின்றன. நீங்கள் அங்கே இல்லாவிட்டால், அந்த வாடிக்கையாளர் வேறொருவரிடம் செல்கிறார்.',
+    b2t: 'நம்பிக்கை உருவாகிறது',
+    b2p: 'Website உள்ள வணிகத்தை மக்கள் அதிகம் நம்புகிறார்கள். குறிப்பாக பெரிய ஆர்டர் ஒன்றைக் கொடுப்பதற்கு முன், வாடிக்கையாளர் உங்களைப் பற்றி இணையத்தில் பார்க்கிறார்.',
+    b3t: '24 மணி நேரமும் திறந்திருக்கும்',
+    b3p: 'கடையை மூடிவிட்டுச் சென்றாலும், நீங்கள் தூங்கும்போதும் உங்கள் Website வாடிக்கையாளர்களுக்குப் பதில் சொல்கிறது — விலைகள், நேரங்கள், முகவரி, தொலைபேசி எண்.',
+    b4t: 'விற்பனை அதிகரிக்கிறது',
+    b4p: 'உங்கள் பொருட்கள், விலைகள், படங்கள் அனைத்தும் ஒரே இடத்தில். வாடிக்கையாளர் எல்லாவற்றையும் பார்த்துவிட்டு, அங்கிருந்தே WhatsApp மூலம் ஆர்டர் செய்யலாம்.',
+    b5t: 'தொழில்முறைத் தோற்றம்',
+    b5p: 'சிறிய வணிகமாக இருந்தாலும், நல்ல Website ஒன்றின் மூலம் பெரிய நிறுவனம் போன்ற தோற்றம் கிடைக்கிறது. அது வாடிக்கையாளரின் முடிவை நேரடியாகப் பாதிக்கிறது.',
+    b6t: 'போட்டியில் முன்னிலையில்',
+    b6p: 'உங்கள் துறையில் போட்டியாளர்கள் இன்னும் Website உருவாக்கவில்லை என்றால் — இப்போதுதான் சிறந்த நேரம். அவர்கள் முன்னேறுவதற்கு முன் நீங்கள் முன்னேறுங்கள்.'
+  },
+
+  prob: {
+    eyebrow: 'உண்மை நிலை',
+    h2: 'Website இல்லாவிட்டால் என்ன நடக்கும்?',
+    p: 'இவை இலங்கை வணிகர்களிடமிருந்து நாங்கள் அடிக்கடி கேட்கும் விஷயங்கள்.',
+    listTitle: 'Website இல்லாத வணிகத்தின் பிரச்சினைகள்',
+    p1: 'வாடிக்கையாளர்கள் உங்கள் வணிகத்தின் பெயரை மறந்துவிடுகிறார்கள். மீண்டும் கண்டுபிடிக்க வழியில்லை.',
+    p2: 'Facebook post இரண்டு மூன்று நாட்களில் மற்ற post களுக்கு இடையே தொலைந்து போகிறது.',
+    p3: 'புதிய வாடிக்கையாளர்கள் உங்களை நம்பத் தயங்குகிறார்கள்.',
+    p4: 'விலைகளையும் விவரங்களையும் மீண்டும் மீண்டும் அதே அழைப்பில் சொல்ல வேண்டியிருக்கிறது.',
+    p5: 'Google இல் தேடினாலும் உங்கள் வணிகம் கிடைப்பதில்லை.',
+    p6: 'போட்டியாளர்கள் Online சென்று, உங்கள் வாடிக்கையாளர்களை எடுத்துச் செல்கிறார்கள்.',
+    solTitle: 'இந்தப் பிரச்சினைகள் அனைத்தையும் நாங்கள் தீர்க்கிறோம்',
+    solP: 'நீங்கள் செய்ய வேண்டியது உங்கள் வணிகத்தைப் பற்றி எங்களிடம் சொல்வது மட்டுமே. மீதி அனைத்தையும் நாங்கள் பார்த்துக்கொள்கிறோம்.',
+    s1: 'உங்கள் சொந்த முகவரி — <span class="en">yourbusiness.lk</span> போன்று, ஒருபோதும் தொலையாதது.',
+    s2: 'Google இல் உங்கள் வணிகம் கிடைக்கும் வகையில் அமைக்கிறோம்.',
+    s3: 'விலைகள், சேவைகள், படங்கள் — அனைத்தும் ஒரே இடத்தில்.',
+    s4: 'WhatsApp பொத்தான் — வாடிக்கையாளர் ஒரே click இல் உங்களுடன் பேசலாம்.',
+    s5: 'Mobile இல் அழகாக வேலை செய்கிறது — இலங்கையில் பெரும்பாலோர் பார்ப்பது அதிலேயே.'
+  },
+
+  svc: {
+    eyebrow: 'எங்கள் சேவைகள்',
+    h2: 'நாங்கள் உங்களுக்குச் செய்து தருபவை',
+    p: 'ஒவ்வொரு தொழில்நுட்பச் சொல்லும் எளிய தமிழில் விளக்கப்பட்டுள்ளது. புரியாத ஒன்று இருந்தால் கேளுங்கள் — சொல்லித் தர நாங்கள் விரும்புகிறோம்.',
+    s1t: 'Business Website',
+    s1p: 'உங்கள் வணிகம் பற்றிய முழு விவரங்கள் — சேவைகள், படங்கள், முகவரி, தொடர்பு வழிகள். சிறிய வணிகத்திற்கு சிறந்த தொடக்கம்.',
+    s2t: 'Restaurant Website',
+    s2p: 'உங்கள் Menu, விலைகள், உணவுப் படங்கள் மற்றும் Table Booking. வாடிக்கையாளர் முன்கூட்டியே பார்த்து ஆர்டர் செய்யலாம்.',
+    s3t: 'Hotel & Villa Website',
+    s3p: 'அறைகள், படத் தொகுப்பு, வசதிகள் மற்றும் Booking வசதி. வெளிநாட்டுப் பயணிகள் உங்களைக் கண்டுபிடிப்பது எளிது.',
+    s4t: 'E-commerce (Online கடை)',
+    s4p: 'இணையத்திலேயே பொருட்களை விற்கக்கூடிய Website. வாடிக்கையாளர் பொருட்களைத் தேர்ந்தெடுத்து, ஆர்டர் செய்து, பணமும் செலுத்தலாம்.',
+    s5t: 'Portfolio Website',
+    s5p: 'புகைப்படக் கலைஞர்கள், வடிவமைப்பாளர்கள், பொறியாளர்கள் மற்றும் கலைஞர்கள் தங்கள் வேலையை அழகாகக் காட்ட.',
+    s6t: 'Landing Page',
+    s6p: 'ஒரு பொருள் அல்லது ஒரு விளம்பரத்திற்கான சிறப்புப் பக்கம். விளம்பரங்களிலிருந்து வருபவர்களை வாடிக்கையாளர்களாக மாற்ற.',
+    s7t: 'SEO — Google இல் முன்னிலைக்கு',
+    s7p: 'மக்கள் Google இல் தேடும்போது உங்கள் வணிகம் முதல் பக்கத்தில் தெரிய வேண்டிய அமைப்புகள். நீண்ட காலத்தில் அதிக பலன் தருவது.',
+    s8t: 'Google Maps இல் சேர்த்தல்',
+    s8p: 'உங்கள் வணிகம் Google வரைபடத்தில் தெரியும். வாடிக்கையாளர் "Directions" அழுத்தினால் நேரடியாக உங்கள் கடைக்கு வரலாம்.',
+    s9t: 'WhatsApp இணைப்பு',
+    s9p: 'Website இல் பொத்தானை அழுத்தினால் நேரடியாக உங்கள் WhatsApp க்கு message வரும். இலங்கையில் அதிக ஆர்டர்கள் வரும் வழி.',
+    s10t: 'Domain & Hosting',
+    s10p: '<strong>Domain</strong> என்பது உங்கள் Website இன் பெயர் (உ.ம்: <span class="en">yourshop.lk</span>). <strong>Hosting</strong> என்பது அது இருக்கும் இடம். இரண்டையும் நாங்கள் அமைத்துத் தருகிறோம்.',
+    s11t: 'பராமரிப்பு (Maintenance)',
+    s11p: 'Website உருவாக்கிய பின்னரும் நாங்கள் இருக்கிறோம். புதிய படங்கள், விலை மாற்றங்கள், பாதுகாப்பு புதுப்பிப்புகள் — ஒவ்வொரு மாதமும்.',
+    s12t: 'SSL பாதுகாப்பு',
+    s12p: 'உங்கள் Website முகவரிக்கு அருகில் ஒரு பூட்டு தெரியும். அதன் மூலம் உங்கள் Website பாதுகாப்பானது என வாடிக்கையாளருக்கு உறுதிப்படுகிறது.'
+  },
+
+  whyus: {
+    eyebrow: 'ஏன் எங்களைத் தேர்ந்தெடுக்க வேண்டும்?',
+    h2: 'இலங்கை வணிகங்களைப் புரிந்துகொள்ளும் குழு',
+    p: 'நாங்கள் வெளிநாட்டு நிறுவனம் அல்ல. இலங்கையில் சிறு வணிகம் நடத்துவதன் சிரமங்களை நாங்கள் அறிவோம்.',
+    w1t: 'புரியும் மொழியில் பேசுகிறோம்',
+    w1p: 'தொழில்நுட்பச் சொற்களைப் பயன்படுத்தி உங்களைக் குழப்ப மாட்டோம். எல்லாமே எளிய தமிழில்.',
+    w2t: 'நட்பான ஆதரவு',
+    w2p: 'பிரச்சினை வந்தால் WhatsApp இல் கேட்கலாம். பதில் சொல்வது ஒரு மனிதர் — bot அல்ல.',
+    w3t: 'விரைவான வழங்கல்',
+    w3p: 'எளிய வணிக Website ஒன்று 5–7 நாட்களுக்குள். மாதக்கணக்கில் காத்திருக்க வேண்டியதில்லை.',
+    w4t: 'நவீன வடிவமைப்பு',
+    w4p: '2015 போல தெரியும் Website அல்ல. இன்றைய உலகின் சிறந்த தரத்திலான வடிவமைப்புகள்.',
+    w5t: 'Mobile முதன்மை வடிவமைப்பு',
+    w5p: 'இலங்கையில் 80% க்கும் மேற்பட்டோர் பார்ப்பது Mobile இல். அதனால் நாங்கள் முதலில் Mobile க்கே design செய்கிறோம்.',
+    w6t: 'தாங்கக்கூடிய விலை',
+    w6p: 'சிறு வணிகம் தாங்கக்கூடிய விலை. உறுதியான விலையை முன்கூட்டியே சொல்கிறோம் — மறைந்த செலவுகள் இல்லை.',
+    w7t: 'பாதுகாப்பானது',
+    w7p: 'SSL பாதுகாப்பு, வழக்கமான backup மற்றும் பாதுகாப்பு புதுப்பிப்புகள் — ஒவ்வொரு Website க்கும்.',
+    w8t: 'உள்ளூர் புரிதல்',
+    w8p: 'இலங்கை வாடிக்கையாளர் சிந்திக்கும் விதம் எங்களுக்குத் தெரியும். அதனால் எங்கள் வடிவமைப்புகள் இலங்கையில் வேலை செய்கின்றன.'
+  },
+
+  work: {
+    eyebrow: 'எங்கள் வேலை',
+    h2: 'நாங்கள் உருவாக்கிய திட்டங்கள்',
+    demo: 'மாதிரி (Demo) திட்டங்கள் — உங்கள் உண்மையான வேலையை இங்கே காட்டுங்கள்',
+    p: 'பல்வேறு துறைகளின் வணிகங்களுக்கு நாங்கள் வடிவமைக்கும் விதம் இதோ.',
+    c1: 'Restaurant',   n1: 'சருகெம — கம்பஹா',        d1: 'Menu, உணவுப் படங்கள் மற்றும் Table Booking உடன் உணவகத்திற்கான Website.',
+    c2: 'Hardware',     n2: 'நிமல் ஹார்ட்வேர் — குருணாகல்', d2: '200 க்கும் மேற்பட்ட பொருட்கள், விலைகள் மற்றும் விரைவான ஆர்டர் வசதி.',
+    c3: 'Hotel & Villa', n3: 'சிதும் வில்லா — மிரிஸ்ஸ',   d3: 'அறைத் தொகுப்பு, வசதிகள் மற்றும் வெளிநாட்டுப் பயணிகளுக்கான Booking வசதி.',
+    c4: 'Salon',        n4: 'கலனி சலூன் — நுகேகொட',   d4: 'சேவைப் பட்டியல், விலைகள் மற்றும் Online நேரம் ஒதுக்கீடு.',
+    c5: 'Tuition Class', n5: 'பஹசர வகுப்புகள் — கந்தான', d5: 'பாடம், வகுப்பு நேரங்கள், ஆசிரியர் விவரங்கள் மற்றும் Online பதிவு.',
+    c6: 'Pharmacy',     n6: 'செவண மருந்தகம் — மஹரகம',  d6: 'திறந்திருக்கும் நேரங்கள், முகவரி மற்றும் WhatsApp மூலம் மருந்து ஆர்டர்.'
+  },
+
+  proc: {
+    eyebrow: 'செயல்முறை',
+    h2: 'உங்கள் Website உருவாகும் விதம் — 6 படிகள்',
+    p: 'ஒவ்வொரு படியிலும் என்ன நடக்கிறது என்பது உங்களுக்குத் தெரியும். திடீர் ஆச்சரியங்கள் இல்லை.',
+    t1: 'தொடர்பு கொள்ளுதல்', d1: 'நீங்கள் WhatsApp அல்லது தொலைபேசி மூலம் எங்களிடம் பேசுகிறீர்கள். முதல் ஆலோசனை முற்றிலும் இலவசம்.', u1: 'அன்றே',
+    t2: 'கலந்துரையாடல்',   d2: 'உங்கள் வணிகம், வாடிக்கையாளர்கள் மற்றும் தேவைகள் பற்றிப் பேசுகிறோம். பின்னர் உறுதியான விலை தருகிறோம்.', u2: '1–2 நாட்கள்',
+    t3: 'வடிவமைப்பு (Design)', d3: 'உங்கள் Website எப்படித் தெரியும் என்பதை உருவாக்கிக் காட்டுகிறோம். நீங்கள் விரும்பும் மாற்றங்களைச் செய்கிறோம்.', u3: '2–3 நாட்கள்',
+    t4: 'உருவாக்கம் (Development)', d4: 'ஒப்புதல் பெற்ற வடிவமைப்பை உண்மையில் வேலை செய்யும் Website ஆக மாற்றுகிறோம்.', u4: '2–4 நாட்கள்',
+    t5: 'வெளியீடு (Launch)', d5: 'Domain மற்றும் Hosting அமைத்து, உங்கள் Website ஐ உலகுக்குத் திறக்கிறோம்.', u5: '1 நாள்',
+    t6: 'தொடர் ஆதரவு',    d6: 'அதற்குப் பிறகும் நாங்கள் இருக்கிறோம். மாற்றங்கள், புதுப்பிப்புகள் மற்றும் பிரச்சினைகளுக்கு உதவி.', u6: 'தொடர்ச்சியாக'
+  },
+
+  tst: {
+    eyebrow: 'வாடிக்கையாளர் கருத்துகள்',
+    h2: 'எங்கள் வாடிக்கையாளர்கள் சொல்வது',
+    demo: 'மாதிரி கருத்துகள் — உண்மையான வாடிக்கையாளர் கருத்துகளால் மாற்றவும்',
+    starsAria: '5 நட்சத்திரங்கள்',
+    q1: '"எனக்கு கணினி பற்றி பெரிய அறிவு இல்லை. ஆனால் இவர்கள் எல்லாவற்றையும் எனக்குப் புரியும் விதத்தில் சொன்னார்கள். இப்போது என் கடை Google இல் கிடைக்கிறது."',
+    n1: 'நிமல் பெரேரா', r1: 'நிமல் ஹார்ட்வேர், குருணாகல்',
+    q2: '"Website உருவாக்கிய பிறகு Booking கள் நிறைய அதிகரித்தன. குறிப்பாக வெளிநாட்டிலிருந்து வருபவர்கள் இப்போது நேரடியாக எங்களுடன் பேசுகிறார்கள்."',
+    n2: 'சமந்தி த சில்வா', r2: 'சிதும் வில்லா, மிரிஸ்ஸ',
+    q3: '"6 நாட்களில் வேலையை முடித்துக் கொடுத்தார்கள். விலையும் முன்பு சொன்ன விலைதான் — கூடுதல் செலவுகள் இல்லை. நல்ல சேவை."',
+    n3: 'கசுன் ஜயசிங்க', r3: 'பஹசர வகுப்புகள், கந்தான'
+  },
+
+  faq: {
+    eyebrow: 'அடிக்கடி கேட்கப்படும் கேள்விகள்',
+    h2: 'உங்கள் கேள்விகளுக்கான பதில்கள்',
+    p: 'இங்கே இல்லாத கேள்வி இருந்தால் WhatsApp இல் கேளுங்கள். நாங்கள் விரைவில் பதில் சொல்கிறோம்.',
+    q1: 'Website ஒன்று உருவாக்க எவ்வளவு காலம் ஆகும்?',
+    a1: 'எளிய வணிக Website ஒன்று பொதுவாக 5–7 நாட்களுக்குள். Online கடை (E-commerce) போன்ற பெரிய திட்டமாக இருந்தால் 2–4 வாரங்கள் ஆகும். உங்களுக்குத் தேவையான தேதியை முன்கூட்டியே சொன்னால் அதற்கேற்ப திட்டமிடுகிறோம்.',
+    q2: 'Website ஒன்றின் செலவு எவ்வளவு?',
+    a2: 'அது உங்களுக்குத் தேவையானவற்றைப் பொறுத்து மாறுபடும். எத்தனை பக்கங்கள், Online விற்பனை தேவையா போன்றவை விலையைப் பாதிக்கின்றன. நாங்கள் செய்வது — உங்கள் தேவையைக் கேட்டு, <strong>உறுதியான விலையை</strong> முன்கூட்டியே எழுத்து மூலம் தருகிறோம். பின்னர் மறைந்த செலவுகள் சேர்வதில்லை.',
+    q3: 'Domain என்றால் என்ன?',
+    a3: 'Domain என்பது உங்கள் Website இன் <strong>பெயர்</strong>. உதாரணமாக <span class="en">nimalhardware.lk</span>. வாடிக்கையாளர் browser இல் தட்டச்சு செய்வது அதுதான். அது உங்கள் வணிகத்தின் இணைய முகவரி போன்றது.',
+    q4: 'Hosting என்றால் என்ன?',
+    a4: 'Hosting என்பது உங்கள் Website இன் கோப்புகள், படங்கள் மற்றும் விவரங்கள் சேமிக்கப்படும் <strong>இடம்</strong>. எளிமையாகச் சொன்னால் — Domain உங்கள் கடையின் பெயர் என்றால், Hosting உங்கள் கடையின் இடம். இரண்டும் தேவை, இரண்டையும் நாங்கள் அமைத்துத் தருகிறோம்.',
+    q5: 'Website Mobile இல் சரியாக வேலை செய்யுமா?',
+    a5: 'ஆம். உங்கள் Website Mobile, Tablet மற்றும் Computer மூன்றிலும் அழகாகச் செயல்படும். இலங்கையில் பெரும்பாலோர் இணையத்தைப் பார்ப்பது Mobile இல் என்பதால், நாங்கள் <strong>முதலில் Mobile க்கே</strong> design செய்து பின்னர்தான் பெரிய திரைகளுக்குப் பொருத்துகிறோம்.',
+    q6: 'எனக்குத் தொழில்நுட்ப அறிவு இல்லை. என்னாலும் முடியுமா?',
+    a6: 'உண்மையில், எங்கள் வாடிக்கையாளர்களில் பெரும்பாலோர் அப்படித்தான். நீங்கள் தெரிந்திருக்க வேண்டியது Website குறியீடு பற்றி அல்ல — <strong>உங்கள் வணிகம் பற்றி மட்டுமே</strong>. மீதி அனைத்தையும் நாங்கள் பார்த்துக்கொள்கிறோம், எளிய தமிழில் விளக்கி.',
+    q7: 'Website உருவாக்கிய பிறகு மாற்றங்கள் செய்ய முடியுமா?',
+    a7: 'முடியும். புதிய படங்கள், விலை மாற்றங்கள், புதிய சேவைகள் சேர்த்தல் — அனைத்தும் செய்ய முடியும். அதற்கு மாதாந்திர பராமரிப்புத் தொகுப்பு உள்ளது, அல்லது தேவைப்படும் போது மட்டும் செய்துகொள்ளவும் முடியும்.',
+    q8: 'பணம் செலுத்துவது எப்படி?',
+    a8: 'பொதுவாக இரண்டு தவணைகளில் — வேலை தொடங்கும்போது 50% மற்றும் Website வெளியிடும்போது மீதி 50%. வங்கி பரிமாற்றங்கள் மற்றும் முக்கிய கட்டண முறைகளை ஏற்கிறோம்.'
+  },
+
+  final: {
+    h2: 'உங்கள் வணிகத்தை அடுத்த நிலைக்குக் கொண்டு செல்வோம்.',
+    lead: '"Website இல்லாத வணிகம் இன்று உலகுக்குத் தெரியாத வணிகம்."',
+    sub: 'இன்றே பேசுங்கள். முதல் ஆலோசனை இலவசம் — உங்கள் வணிகத்திற்கு Website தேவையா இல்லையா என்பதை நேர்மையாகச் சொல்கிறோம். வற்புறுத்தி விற்க மாட்டோம்.',
+    wa: 'WhatsApp செய்யுங்கள்',
+    call: 'தொலைபேசியில் அழைக்கவும்',
+    email: 'Email அனுப்புங்கள்',
+    note: 'பொதுவாக 30 நிமிடங்களுக்குள் பதில் தருகிறோம் · வார நாட்களில் மு.ப. 9 – பி.ப. 7'
+  },
+
+  foot: {
+    tagline: 'இலங்கையின் சிறு வணிகங்களை இணையத்திற்குக் கொண்டு செல்லும், உங்களுக்குப் புரியும் மொழியில் பேசும் குழு.',
+    hServices: 'சேவைகள்',
+    l1: 'வணிக Website',
+    l2: 'Online கடைகள் (E-commerce)',
+    l3: 'Hotel & Villa Website',
+    l4: 'SEO மற்றும் Google Maps',
+    l5: 'பராமரிப்பு',
+    hContact: 'தொடர்பு கொள்ளுங்கள்',
+    c1: 'WhatsApp', c2: 'தொலைபேசி', c3: 'Email', c4: 'அடிக்கடி கேட்கப்படும் கேள்விகள்',
+    demo: 'இது ஒரு மாதிரி (Demo) Website ஆகும்.',
+    waAria: 'WhatsApp இல் பேசுங்கள்'
+  },
+
+  wa: { prefill: 'வணக்கம்! எனக்கு Website ஒன்று பற்றி தெரிந்துகொள்ள வேண்டும்.' }
+};
+
+
+/* ============================================================
+   SITE රෙඩී — LANGUAGE FILE: English (en)
+   ------------------------------------------------------------
+   This file holds every visible string for this language.
+   Nothing here is referenced by position — only by its dot-path
+   key (e.g. "hero.h1a"), which the markup names in a data-i18n
+   attribute. Reorder or reformat freely; just don't rename keys.
+
+   Missing keys fall back to Sinhala, so a partial translation
+   still renders a complete, working page.
+   ============================================================ */
+
+window.SITEREDI_I18N = window.SITEREDI_I18N || {};
+window.SITEREDI_I18N['en'] = {
+  meta: { title: 'Site රෙඩී — Websites for Sri Lankan Business' },
+
+  nav: {
+    why: 'Why a website?',
+    services: 'Services',
+    work: 'Our work',
+    process: 'Process',
+    faq: 'FAQ',
+    contact: 'Contact',
+    cta: 'Get a quote',
+    menuAria: 'Menu',
+    homeAria: 'Site රෙඩී — Home',
+    langAria: 'Choose language'
+  },
+
+  hero: {
+    badge: 'Built specifically for Sri Lankan businesses',
+    h1a: "Let's take your business ",
+    h1hl: 'online',
+    h1b: '.',
+    quote: '"A good website isn\'t an expense — it\'s an investment in your business."',
+    sub: "Don't worry about the technical side. We'll talk to you in plain language and have a website built for your business within 7 days.",
+    wa: 'Chat on WhatsApp',
+    packages: 'View packages',
+    note: 'First consultation free · Support in Sinhala, Tamil and English',
+    chipDays: 'day delivery',
+    chipMobile: 'Mobile Friendly',
+    phoneAlt: 'A sample business website shown on a mobile phone',
+    phoneBrand: 'Your Business',
+    phoneH: 'Your customers are online today.',
+    phoneP: 'Now you need to be there too.',
+    phoneBtn: 'Call now'
+  },
+
+  trust: {
+    projects: 'Projects completed',
+    days: 'Days — average delivery',
+    happy: 'Happy customers',
+    support: 'WhatsApp support'
+  },
+
+  why: {
+    eyebrow: 'Why a website?',
+    h2: 'Why does your business need a website?',
+    p: "Without the jargon: your customer is already online. The only question is whether they can find you.",
+    b1t: 'People search on Google now',
+    b1p: '"Salon near me", "good cake shop" — searched thousands of times a day. If you\'re not there, that customer goes to someone else.',
+    b2t: 'It builds trust',
+    b2p: 'People trust a business with a website more. Especially before placing a large order, a customer will look you up online first.',
+    b3t: 'Open 24 hours',
+    b3p: 'Even after you close, even while you sleep, your website answers customers — prices, opening hours, address, phone number.',
+    b4t: 'Sales go up',
+    b4p: 'Your products, prices and photos in one place. Customers can see everything and order right there via WhatsApp.',
+    b5t: 'A professional image',
+    b5p: 'Even a small business looks like a large company with a good website. That directly affects a customer\'s decision.',
+    b6t: 'Ahead of the competition',
+    b6p: "If your competitors don't have a website yet — now is the best time. Get ahead before they do."
+  },
+
+  prob: {
+    eyebrow: 'The reality',
+    h2: 'What happens without a website?',
+    p: 'These are the things Sri Lankan business owners tell us most often.',
+    listTitle: 'Problems a business without a website faces',
+    p1: 'Customers forget your business name, with no way to find you again.',
+    p2: 'Your Facebook post disappears among other posts within two or three days.',
+    p3: 'New customers hesitate to trust you.',
+    p4: 'You repeat the same prices and details on call after call.',
+    p5: "Even when people search Google, your business doesn't come up.",
+    p6: 'Competitors go online and take your customers with them.',
+    solTitle: 'We solve every one of these',
+    solP: 'All you have to do is tell us about your business. We handle everything else.',
+    s1: 'An address of your own — like <span class="en">yourbusiness.lk</span>, which never gets lost.',
+    s2: 'Set up so your business actually shows up on Google.',
+    s3: 'Prices, services, photos — everything in one place.',
+    s4: 'A WhatsApp button so customers reach you in one click.',
+    s5: 'Works beautifully on mobile — where most Sri Lankans browse.'
+  },
+
+  svc: {
+    eyebrow: 'Our services',
+    h2: 'What we build for you',
+    p: "Every technical term is explained in plain language. If something isn't clear, just ask — we're happy to explain.",
+    s1t: 'Business Website',
+    s1p: 'Everything about your business — services, photos, address, ways to get in touch. The best starting point for a small business.',
+    s2t: 'Restaurant Website',
+    s2p: 'Your menu, prices, food photos and table booking. Customers can browse and order before they arrive.',
+    s3t: 'Hotel & Villa Website',
+    s3p: 'Rooms, photo gallery, facilities and booking. Makes it easy for overseas travellers to find you.',
+    s4t: 'E-commerce (Online shop)',
+    s4p: 'A website that sells online. Customers choose products, place an order and pay — all in one place.',
+    s5t: 'Portfolio Website',
+    s5p: 'For photographers, designers, engineers and artists to show their work beautifully.',
+    s6t: 'Landing Page',
+    s6p: 'A focused page for a single product or promotion. Turns ad traffic into actual customers.',
+    s7t: 'SEO — rank higher on Google',
+    s7p: 'The setup needed for your business to appear on the first page when people search. The highest long-term return of anything we do.',
+    s8t: 'Google Maps listing',
+    s8p: 'Your business appears on Google Maps. Customers tap "Directions" and drive straight to your shop.',
+    s9t: 'WhatsApp integration',
+    s9p: 'A button on your website sends a message straight to your WhatsApp. The way most orders arrive in Sri Lanka.',
+    s10t: 'Domain & Hosting',
+    s10p: '<strong>Domain</strong> is your website\'s name (e.g. <span class="en">yourshop.lk</span>). <strong>Hosting</strong> is the land it sits on. We set up both.',
+    s11t: 'Maintenance',
+    s11p: "We're still here after launch. New photos, price changes, security updates — every month.",
+    s12t: 'SSL security',
+    s12p: 'A padlock appears next to your website address, confirming to customers that your site is secure.'
+  },
+
+  whyus: {
+    eyebrow: 'Why choose us?',
+    h2: 'A team that understands Sri Lankan business',
+    p: "We're not an overseas agency. We know what running a small business in Sri Lanka is actually like.",
+    w1t: 'We speak plainly',
+    w1p: "We won't confuse you with jargon. Everything explained in language you use.",
+    w2t: 'Friendly support',
+    w2p: 'Got a question? Ask on WhatsApp. A person answers — not a bot.',
+    w3t: 'Fast delivery',
+    w3p: 'A simple business website in 5–7 days. No waiting months.',
+    w4t: 'Modern design',
+    w4p: "Not a site that looks like 2015. Design at today's international standard.",
+    w5t: 'Mobile-first design',
+    w5p: 'Over 80% of Sri Lankans browse on mobile. So we design for mobile first, then scale up.',
+    w6t: 'Affordable pricing',
+    w6p: 'A price a small business can carry. Fixed and quoted upfront — no hidden costs.',
+    w7t: 'Secure',
+    w7p: 'SSL security, regular backups and security updates — on every website.',
+    w8t: 'Local understanding',
+    w8p: 'We know how Sri Lankan customers think. That\'s why our designs work here.'
+  },
+
+  work: {
+    eyebrow: 'Our work',
+    h2: 'Projects we\'ve built',
+    demo: 'Demo projects — replace these with your real work',
+    p: 'Here\'s how we design for businesses across different industries.',
+    c1: 'Restaurant',   n1: 'Sarukema — Gampaha',        d1: 'A restaurant website with menu, food photography and table booking.',
+    c2: 'Hardware',     n2: 'Nimal Hardware — Kurunegala', d2: 'Over 200 products with pricing and a fast ordering flow.',
+    c3: 'Hotel & Villa', n3: 'Sithum Villa — Mirissa',     d3: 'Room gallery, facilities and booking for overseas travellers.',
+    c4: 'Salon',        n4: 'Kalani Salon — Nugegoda',    d4: 'Service list, pricing and online appointment booking.',
+    c5: 'Tuition Class', n5: 'Pahasara Classes — Kandana', d5: 'Subjects, class times, teacher profiles and online registration.',
+    c6: 'Pharmacy',     n6: 'Sewana Pharmacy — Maharagama', d6: 'Opening hours, location and medicine ordering over WhatsApp.'
+  },
+
+  proc: {
+    eyebrow: 'Process',
+    h2: 'How your website gets built — 6 steps',
+    p: 'You know what\'s happening at every step. No surprises.',
+    t1: 'Get in touch',  d1: 'You message us on WhatsApp or call. The first consultation is completely free.', u1: 'Same day',
+    t2: 'Discussion',    d2: 'We talk through your business, your customers and what you need. Then we give you a fixed price.', u2: '1–2 days',
+    t3: 'Design',        d3: 'We show you how your website will look. You request any changes you want.', u3: '2–3 days',
+    t4: 'Development',   d4: 'We turn the approved design into a website that actually works.', u4: '2–4 days',
+    t5: 'Launch',        d5: 'We set up domain and hosting, and open your website to the world.', u5: '1 day',
+    t6: 'Ongoing support', d6: "We're still here afterwards. Changes, updates and help when something comes up.", u6: 'Ongoing'
+  },
+
+  tst: {
+    eyebrow: 'Testimonials',
+    h2: 'What our customers say',
+    demo: 'Sample testimonials — replace with real customer feedback',
+    starsAria: '5 stars',
+    q1: '"I don\'t know much about computers. But they explained everything in a way I could follow. Now my shop shows up on Google."',
+    n1: 'Nimal Perera', r1: 'Nimal Hardware, Kurunegala',
+    q2: '"Bookings went up a lot after the website. Especially guests from overseas — they now contact us directly."',
+    n2: 'Samanthi de Silva', r2: 'Sithum Villa, Mirissa',
+    q3: '"They finished in 6 days. The price was exactly what they quoted — no extras added later. Good service."',
+    n3: 'Kasun Jayasinghe', r3: 'Pahasara Classes, Kandana'
+  },
+
+  faq: {
+    eyebrow: 'FAQ',
+    h2: 'Answers to your questions',
+    p: "If your question isn't here, ask us on WhatsApp. We reply quickly.",
+    q1: 'How long does it take to build a website?',
+    a1: 'A simple business website usually takes 5–7 days. A larger project like an online shop (e-commerce) takes around 2–4 weeks. Tell us your deadline upfront and we\'ll plan around it.',
+    q2: 'How much does a website cost?',
+    a2: 'It depends on what you need. How many pages, whether you need online selling — these affect the price. What we do is listen to your requirements and give you a <strong>fixed price in writing</strong> upfront. No hidden costs get added later.',
+    q3: 'What is a domain?',
+    a3: 'A domain is your website\'s <strong>name</strong> — for example <span class="en">nimalhardware.lk</span>. It\'s what customers type into their browser. Think of it as your business\'s address on the internet.',
+    q4: 'What is hosting?',
+    a4: 'Hosting is the <strong>space</strong> where your website\'s files, photos and details are stored. Put simply — if the domain is your shop\'s name, hosting is the land it stands on. You need both, and we set up both.',
+    q5: 'Will the website work properly on mobile?',
+    a5: 'Yes. Your website will work beautifully on mobile, tablet and computer. Since most Sri Lankans browse on mobile, we design <strong>for mobile first</strong> and then adapt it to larger screens.',
+    q6: "I'm not technical. Can I still do this?",
+    a6: "Most of our customers are exactly like that. You don't need to know anything about website code — <strong>only about your business</strong>. We handle the rest and explain it in plain language.",
+    q7: 'Can I make changes after the website is built?',
+    a7: 'Yes. New photos, price changes, adding new services — all possible. There\'s a monthly maintenance package for this, or you can just request changes as you need them.',
+    q8: 'How does payment work?',
+    a8: 'Usually in two parts — 50% when work starts and the remaining 50% when the website launches. We accept bank transfers and all major payment methods.'
+  },
+
+  final: {
+    h2: "Let's take your business to the next level.",
+    lead: '"A business without a website today is a business the world cannot see."',
+    sub: "Talk to us today. The first consultation is free — we'll tell you honestly whether a website is worth it for your business. No hard sell.",
+    wa: 'Message on WhatsApp',
+    call: 'Call us',
+    email: 'Send an email',
+    note: 'We usually reply within 30 minutes · Weekdays 9am – 7pm'
+  },
+
+  foot: {
+    tagline: 'The team taking Sri Lankan small businesses online, speaking the language you actually use.',
+    hServices: 'Services',
+    l1: 'Business websites',
+    l2: 'Online shops (E-commerce)',
+    l3: 'Hotel & villa websites',
+    l4: 'SEO and Google Maps',
+    l5: 'Maintenance',
+    hContact: 'Contact',
+    c1: 'WhatsApp', c2: 'Phone', c3: 'Email', c4: 'FAQ',
+    demo: 'This is a demo website.',
+    waAria: 'Chat on WhatsApp'
+  },
+
+  wa: { prefill: 'Hello! I\'d like to know more about getting a website.' }
+};
+
+
+/* ============================================================
+   SITE රෙඩී — INTERNATIONALISATION ENGINE
+   ------------------------------------------------------------
+   You should not need to edit this file to change wording or to
+   add a language. Text lives in assets/js/lang/<code>.js and the
+   language list lives in config.js.
+
+   HOW THE MARKUP OPTS IN
+     data-i18n="path.to.key"        → sets element.textContent
+     data-i18n-html="path.to.key"   → sets element.innerHTML
+                                      (for strings with <strong>)
+     data-i18n-aria="path.to.key"   → sets the aria-label
+
+   The dot-path is looked up in the active language, then falls
+   back to the default language, then to the key itself — so a
+   missing translation degrades to readable text, never to blank.
+   ============================================================ */
+
+(function (window, document) {
+  'use strict';
+
+  var CFG    = window.SITE_CONFIG;
+  var BUNDLE = window.SITEREDI_I18N || {};
+
+  var DEFAULT_LANG = CFG.defaultLang;
+  var STORAGE_KEY  = CFG.storageKey;
+
+  /* --------------------------------------------------------
+     Storage — wrapped because private browsing, blocked
+     cookies and locked-down corporate browsers all make
+     localStorage throw rather than return null.
+     -------------------------------------------------------- */
+  function readStored() {
+    try {
+      var v = window.localStorage.getItem(STORAGE_KEY);
+      return isSupported(v) ? v : null;
+    } catch (e) { return null; }
+  }
+
+  function writeStored(lang) {
+    try { window.localStorage.setItem(STORAGE_KEY, lang); }
+    catch (e) { /* the site still works, the choice just won't persist */ }
+  }
+
+  function isSupported(code) {
+    if (!code) return false;
+    for (var i = 0; i < CFG.languages.length; i++) {
+      if (CFG.languages[i].code === code) return true;
+    }
+    return false;
+  }
+
+  /* --------------------------------------------------------
+     Lookup: "hero.h1a" → BUNDLE[lang].hero.h1a
+     -------------------------------------------------------- */
+  function lookup(path, lang) {
+    var node = BUNDLE[lang];
+    var parts = path.split('.');
+    for (var i = 0; i < parts.length; i++) {
+      if (node === null || typeof node !== 'object') return null;
+      node = node[parts[i]];
+    }
+    return typeof node === 'string' ? node : null;
+  }
+
+  function t(path, lang) {
+    var hit = lookup(path, lang);
+    if (hit !== null) return hit;
+    if (lang !== DEFAULT_LANG) {
+      hit = lookup(path, DEFAULT_LANG);
+      if (hit !== null) return hit;
+    }
+    // Last resort: show the key. Visible in development, never blank.
+    return path;
+  }
+
+  /* --------------------------------------------------------
+     Contact links are rebuilt on every language change so the
+     pre-filled WhatsApp message arrives in the visitor's own
+     language.
+     -------------------------------------------------------- */
+  function wireContacts(lang) {
+    var wa = 'https://wa.me/' + CFG.whatsapp +
+             '?text=' + encodeURIComponent(t('wa.prefill', lang));
+
+    each('[data-cta="whatsapp"]', function (el) {
+      el.setAttribute('href', wa);
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener');
+    });
+    each('[data-cta="call"]',  function (el) { el.setAttribute('href', 'tel:' + CFG.phone); });
+    each('[data-cta="email"]', function (el) { el.setAttribute('href', 'mailto:' + CFG.email); });
+  }
+
+  function each(sel, fn) {
+    var list = document.querySelectorAll(sel);
+    for (var i = 0; i < list.length; i++) fn(list[i]);
+  }
+
+  /* --------------------------------------------------------
+     Apply a language to the whole document.
+     -------------------------------------------------------- */
+  function apply(lang) {
+    // Drives the per-language font stack in styles.css, and tells
+    // screen readers and search engines what language this is.
+    document.documentElement.setAttribute('lang', lang);
+
+    each('[data-i18n]',      function (el) { el.textContent = t(el.getAttribute('data-i18n'), lang); });
+    each('[data-i18n-html]', function (el) { el.innerHTML   = t(el.getAttribute('data-i18n-html'), lang); });
+    each('[data-i18n-aria]', function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria'), lang)); });
+
+    document.title = t('meta.title', lang);
+    wireContacts(lang);
+    paintSwitcher(lang);
+  }
+
+  /* --------------------------------------------------------
+     Switcher UI — built from config.languages, so adding a
+     language needs no markup change.
+     -------------------------------------------------------- */
+  var elLang, elBtn, elMenu, elCurrent;
+
+  function buildSwitcher() {
+    elLang    = document.getElementById('lang');
+    elBtn     = document.getElementById('langBtn');
+    elMenu    = document.getElementById('langMenu');
+    elCurrent = document.getElementById('langCurrent');
+    if (!elLang) return;
+
+    var html = '';
+    for (var i = 0; i < CFG.languages.length; i++) {
+      var l = CFG.languages[i];
+      html += '<li role="none">' +
+                '<button type="button" class="lang-opt" role="option"' +
+                ' data-lang="' + l.code + '" aria-selected="false"' +
+                ' lang="' + l.code + '">' +
+                  '<span>' + l.native + '</span>' +
+                  '<span class="tick" aria-hidden="true">&#10003;</span>' +
+                '</button>' +
+              '</li>';
+    }
+    elMenu.innerHTML = html;
+
+    elBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleMenu(!elLang.classList.contains('open'));
+    });
+
+    elMenu.addEventListener('click', function (e) {
+      var btn = e.target.closest ? e.target.closest('.lang-opt') : null;
+      if (!btn) return;
+      setLanguage(btn.getAttribute('data-lang'), true);
+      toggleMenu(false);
+      elBtn.focus();
+    });
+
+    // Close on outside click and on Escape.
+    document.addEventListener('click', function () { toggleMenu(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && elLang.classList.contains('open')) {
+        toggleMenu(false);
+        elBtn.focus();
+      }
+    });
+  }
+
+  function toggleMenu(open) {
+    if (!elLang) return;
+    elLang.classList.toggle('open', open);
+    elBtn.setAttribute('aria-expanded', String(open));
+  }
+
+  function paintSwitcher(lang) {
+    if (!elLang) return;
+    for (var i = 0; i < CFG.languages.length; i++) {
+      if (CFG.languages[i].code === lang) elCurrent.textContent = CFG.languages[i].native;
+    }
+    each('.lang-opt', function (el) {
+      el.setAttribute('aria-selected', String(el.getAttribute('data-lang') === lang));
+    });
+  }
+
+  /* --------------------------------------------------------
+     Public: change language. `animate` cross-fades the page so
+     the swap reads as a transition rather than a flicker.
+     -------------------------------------------------------- */
+  var current = DEFAULT_LANG;
+
+  function setLanguage(lang, animate) {
+    if (!isSupported(lang) || lang === current) {
+      if (lang === current) paintSwitcher(lang);
+      return;
+    }
+    current = lang;
+    writeStored(lang);
+
+    var reduced = window.matchMedia &&
+                  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!animate || reduced) { apply(lang); return; }
+
+    document.body.classList.add('lang-switching');
+    window.setTimeout(function () {
+      apply(lang);
+      // Next frame, so the browser paints the new text before fading back in.
+      window.requestAnimationFrame(function () {
+        document.body.classList.remove('lang-switching');
+      });
+    }, 180);
+  }
+
+  /* --------------------------------------------------------
+     Boot
+     -------------------------------------------------------- */
+  function init() {
+    buildSwitcher();
+    // A returning visitor gets their saved choice; everyone else
+    // gets Sinhala, per the brief — deliberately NOT navigator.language.
+    current = readStored() || DEFAULT_LANG;
+    apply(current);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Exposed for debugging and for any future language links in content.
+  window.SiteRediI18n = { set: setLanguage, t: t, get current() { return current; } };
+
+})(window, document);
+
+
+/* ============================================================
+   SITE රෙඩී — INTERFACE BEHAVIOUR
+   ------------------------------------------------------------
+   Sticky navigation, mobile menu, scroll reveal, animated
+   counters and the footer year. Language handling lives in
+   i18n.js; contact details live in config.js.
+   ============================================================ */
+
+(function (window, document) {
+  'use strict';
+
+  /* --------------------------------------------------------
+     Sticky nav shadow + mobile menu
+     -------------------------------------------------------- */
+  (function nav() {
+    var el     = document.getElementById('nav');
+    var burger = document.getElementById('burger');
+    var links  = document.getElementById('navLinks');
+    if (!el || !burger || !links) return;
+
+    function onScroll() { el.classList.toggle('scrolled', window.scrollY > 8); }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    burger.addEventListener('click', function () {
+      var open = el.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+
+    // Close the mobile menu after tapping a link.
+    links.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        el.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+
+  /* --------------------------------------------------------
+     Scroll reveal
+     Falls back to "everything visible" if IntersectionObserver
+     is missing, and force-reveals after 1.5s as a safety net so
+     content can never stay stuck hidden.
+     -------------------------------------------------------- */
+  (function reveal() {
+    var items = document.querySelectorAll('.reveal');
+    if (!items.length) return;
+
+    function showAll() {
+      for (var i = 0; i < items.length; i++) items[i].classList.add('in');
+    }
+
+    if (!('IntersectionObserver' in window)) { showAll(); return; }
+
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          entries[i].target.classList.add('in');
+          io.unobserve(entries[i].target);
+        }
+      }
+    }, { rootMargin: '0px 0px -60px 0px', threshold: 0.08 });
+
+    for (var i = 0; i < items.length; i++) io.observe(items[i]);
+    window.setTimeout(showAll, 1500);
+  })();
+
+  /* --------------------------------------------------------
+     Animated counters in the trust bar
+     -------------------------------------------------------- */
+  (function counters() {
+    var nums = document.querySelectorAll('.count');
+    if (!nums.length) return;
+
+    var reduced = window.matchMedia &&
+                  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function fill(el) { el.textContent = el.getAttribute('data-to'); }
+
+    function run(el) {
+      var target = parseInt(el.getAttribute('data-to'), 10);
+      var dur = 1400;
+      var start = window.performance ? performance.now() : Date.now();
+
+      (function tick(now) {
+        var p = Math.min(((now || Date.now()) - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);            // ease-out cubic
+        el.textContent = String(Math.round(target * eased));
+        if (p < 1) window.requestAnimationFrame(tick);
+      })(start);
+    }
+
+    if (reduced || !('IntersectionObserver' in window)) {
+      for (var i = 0; i < nums.length; i++) fill(nums[i]);
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) { run(entries[i].target); io.unobserve(entries[i].target); }
+      }
+    }, { threshold: 0.5 });
+
+    for (var j = 0; j < nums.length; j++) io.observe(nums[j]);
+  })();
+
+  /* --------------------------------------------------------
+     Footer year + demo badges
+     -------------------------------------------------------- */
+  (function chrome() {
+    var yr = document.getElementById('yr');
+    if (yr) yr.textContent = String(new Date().getFullYear());
+
+    // Hide the "this is placeholder content" badges once the owner
+    // has swapped in real work (set showDemoBadges:false in config.js).
+    if (window.SITE_CONFIG && window.SITE_CONFIG.showDemoBadges === false) {
+      var badges = document.querySelectorAll('.demo-tag');
+      for (var i = 0; i < badges.length; i++) badges[i].hidden = true;
+    }
+  })();
+
+})(window, document);
+
+</script>
+
+</body>
+</html>
