@@ -223,7 +223,6 @@ window.SITEREDI_I18N['ta'] = {
     l5: 'பராமரிப்பு',
     hContact: 'தொடர்பு கொள்ளுங்கள்',
     c1: 'WhatsApp', c2: 'தொலைபேசி', c3: 'Email', c4: 'அடிக்கடி கேட்கப்படும் கேள்விகள்',
-    demo: 'இது ஒரு மாதிரி (Demo) Website ஆகும்.',
     waAria: 'WhatsApp இல் பேசுங்கள்'
   },
 

@@ -223,7 +223,6 @@ window.SITEREDI_I18N['si'] = {
     l5: 'නඩත්තුව',
     hContact: 'සම්බන්ධ වන්න',
     c1: 'WhatsApp', c2: 'දුරකථනය', c3: 'Email', c4: 'නිතර අසන ප්‍රශ්න',
-    demo: 'මෙය නියැදි (Demo) Website එකකි.',
     waAria: 'WhatsApp එකෙන් කතා කරන්න'
   },
 

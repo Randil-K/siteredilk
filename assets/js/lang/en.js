@@ -223,7 +223,6 @@ window.SITEREDI_I18N['en'] = {
     l5: 'Maintenance',
     hContact: 'Contact',
     c1: 'WhatsApp', c2: 'Phone', c3: 'Email', c4: 'FAQ',
-    demo: 'This is a demo website.',
     waAria: 'Chat on WhatsApp'
   },
 
